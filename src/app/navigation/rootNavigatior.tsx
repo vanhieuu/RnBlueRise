@@ -34,14 +34,17 @@ const RootNavigator = (props: Props) => {
   // console.log(token,'ssss')
   return (
     <SafeAreaProvider>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      {/* <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
           name={APP_SCREEN.AUTHENTICATION}
           options={{headerShown: false}}
           component={Authentication}
         />
       </Stack.Navigator>
-      <LottieLoad />
+      <LottieLoad /> */}
+      <View>
+        <Text>ehehehe</Text>
+      </View>
     </SafeAreaProvider>
     // </SafeAreaView>
   );

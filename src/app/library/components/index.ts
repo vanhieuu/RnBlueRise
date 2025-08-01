@@ -2,7 +2,7 @@ export * from './Button';
 
 export * from './ProgressBar';
 
-export * from './loading';
+
 export * from './svg-icon';
 export * from './Text';
 export * from './Block';

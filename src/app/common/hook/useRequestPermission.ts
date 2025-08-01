@@ -1,5 +1,5 @@
 import {PermissionsAndroid, Platform} from 'react-native';
-import messaging from '@react-native-firebase/messaging';
+// import messaging from '@react-native-firebase/messaging';
 
 export const checkApplicationPermission = async () => {
   if (Platform.OS == 'android') {
@@ -11,10 +11,10 @@ export const checkApplicationPermission = async () => {
   }
 };
 
-export const requestUserPermission = async () => {
-  const authStatus = await messaging().requestPermission();
-  return (
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL
-  );
-};
+// export const requestUserPermission = async () => {
+//   const authStatus = await messaging().requestPermission();
+//   return (
+//     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+//     authStatus === messaging.AuthorizationStatus.PROVISIONAL
+//   );
+// };
