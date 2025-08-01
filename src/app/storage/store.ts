@@ -1,10 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit';
-import createSagaMiddleware from 'redux-saga';
+
 
 import {persistStore, persistReducer} from 'redux-persist';
 import {reduxPersistStorage} from '@utils';
 import {allReducer} from './allReducer';
 import {rootSaga} from './rootSaga';
+const createSagaMiddleware = require('redux-saga');
+
 
 const persistedReducer = persistReducer(
   {
@@ -17,7 +19,7 @@ const persistedReducer = persistReducer(
 );
 
 const devMode = __DEV__;
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware.default();
 
 const storeConfig = () => {
   const store = configureStore({
