@@ -1,3 +1,38 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "." /* Base directory to resolve non-absolute module names. */,
+    "paths": {
+      "react": ["./node_modules/@types/react"],
+      "@assets/*": ["./src/app/assets/*"],
+      "@common": ["./src/app/common/index"],
+      "@animated": ["./src/app/common/animated/index"],
+      "@config/*": ["./src/app/config/*"],
+      "@features/*": ["./src/app/features/*"],
+      "@components": ["./src/app/library/components/index"],
+      "@utils": ["./src/app/library/utils/index"],
+      "@library/*": ["./src/app/library/*"],
+      "@model/*": ["./src/app/model/*"],
+      "@navigation/*": ["./src/app/navigation/*"],
+      "@theme": ["./src/app/themes/index"],
+      "@theme/*": ["./src/app/themes/*"],
+      "@store/*": ["./src/app/storage/*"],
+      "@unauthen":["./src/app/features/un-authentication/index"],
+      "@authen":["./src/app/features/authentication/index"],
+      "@service":["./src/app/services/index"],
+      "@service/*" :["./src/app/services/*"],
+      "@container":["./src/app/container/index"],
+      "@container/*":["./src/app/container/*"]
+
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js",
+      "style.d.ts"
+  ],
+  "include": ["src","declarations.d.ts","reactnative.d.ts"]
+ 
 }

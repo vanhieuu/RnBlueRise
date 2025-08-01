@@ -1,0 +1,14 @@
+const DURATION_HIDE = 1000;
+const DURATION_ANIMATED = 500;
+const BG_SUCCESS = '#5A852F';
+const BG_INFO = '#f6e58d';
+const BG_ERROR = '#CC0000';
+const BG_WARN = '#f1c40f';
+export {
+  DURATION_HIDE,
+  DURATION_ANIMATED,
+  BG_SUCCESS,
+  BG_INFO,
+  BG_ERROR,
+  BG_WARN,
+};

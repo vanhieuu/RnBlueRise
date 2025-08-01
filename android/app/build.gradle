@@ -2,6 +2,14 @@ apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
+project.ext.envConfigFiles = [
+    devDebug     : "env/.dev",
+    devRelease   : "env/.dev",
+    prodDebug    : "env/.prod",
+    prodRelease  : "env/.prod"
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -78,12 +86,29 @@ android {
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace "com.rnbluerise"
+
+    flavorDimensions "default"
+    productFlavors {
+        dev{
+            dimension "default"
+            resValue "string","app_name",project.env.get("APP_DISPLAY_NAME")
+        }
+        prod{
+            dimension "default"
+            resValue "string","app_name",project.env.get("APP_DISPLAY_NAME")
+        }
+    }
+
+
+
     defaultConfig {
-        applicationId "com.rnbluerise"
+        resValue "string","build_config_package","com.rnbluerise"
+        applicationId project.env.get("BUNDLE_IDENTIFIER")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode project.env.get("VERSION_CODE").toInteger()
+        versionName project.env.get("VERSION_NAME")
+        multiDexEnabled  true
     }
     signingConfigs {
         debug {
