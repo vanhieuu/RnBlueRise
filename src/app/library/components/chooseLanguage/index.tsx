@@ -19,7 +19,7 @@ const ChooseLanguageModal = ({isModalVisible, onClose}: ChooseLanguage) => {
     <Modal
       isVisible={isModalVisible}
       testID={'modal'}
-      backdropColor={colors.dim_modal}
+      backdropColor={colors.backgroundModal}
       backdropOpacity={0.8}
       animationIn="slideInLeft"
       animationOut="slideOutLeft"

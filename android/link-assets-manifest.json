@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/app/assets/font/BeVietnamPro-Bold.ttf",
+      "sha1": "0bd7e256f73efd0a8135c5090d62f150107ff37a"
+    },
+    {
+      "path": "src/app/assets/font/BeVietnamPro-Medium.ttf",
+      "sha1": "7525dd63d853386f3c192fa78502e547ea620e96"
+    },
+    {
+      "path": "src/app/assets/font/BeVietnamPro-Regular.ttf",
+      "sha1": "03d9e7cd56b446b0585b36a46c3f4b140c6e0026"
+    },
+    {
+      "path": "src/app/assets/font/BeVietnamPro-SemiBold.ttf",
+      "sha1": "1b8668d1e0f6949d9a702c2a590971ab7946a79f"
+    },
+    {
+      "path": "src/app/assets/font/DS-DIGI.ttf",
+      "sha1": "1ce1ed312b41a237cb253c706290c0fd7287859d"
+    },
+    {
+      "path": "src/app/assets/font/opensans-regular.ttf",
+      "sha1": "dc9c07303a2392f9ee02fdb636814970753ac94a"
+    },
+    {
+      "path": "src/app/assets/font/roboto-regular.ttf",
+      "sha1": "096c9245b6a192d1403a82848e104a65f578a8ec"
+    }
+  ]
+}

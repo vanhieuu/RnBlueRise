@@ -7,4 +7,3 @@ export * from './redux';
 export * from './scale';
 export * from './webView';
 export * from './headerTab'
-export * from './modal'
