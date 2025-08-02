@@ -3,12 +3,12 @@ import React, {useEffect} from 'react';
 
 import {APP_SCREEN, RootStackParamList} from './screen-type';
 
-import Authentication from './authentication';
+
 import NetInfo from '@react-native-community/netinfo';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import LottieLoad from '@library/components/LottieLoad';
+
 
 type Props = {};
 const Stack = createNativeStackNavigator<RootStackParamList>();
