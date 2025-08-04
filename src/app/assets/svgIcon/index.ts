@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-export const SvgComponent = {
-
-}
-export type SvgIconTypes = keyof typeof SvgComponent
-=======
 import ChartReportIcon from './source/chart-vertical.svg';
 import HomeIcon from './source/home.svg';
 import TrendingUpIcon from './source/trending-up.svg';
@@ -25,4 +19,3 @@ export const SvgComponent = {
   SearchIcon
 };
 export type SvgIconTypes = keyof typeof SvgComponent;
->>>>>>> Stashed changes
