@@ -1511,7 +1511,10 @@
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 "@rainbow-me/animated-charts@^1.0.0-alpha.6":
@@ -7111,7 +7114,10 @@ react-native-svg@^15.12.0:
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 react-native-svg@^6.2.1:
@@ -8441,7 +8447,10 @@ wcwidth@^1.0.1:
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 webidl-conversions@^3.0.0:
@@ -8480,6 +8489,9 @@ whatwg-url@^5.0.0:
     webidl-conversions "^3.0.0"
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
