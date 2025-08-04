@@ -1,6 +1,7 @@
 export const ColorDefault = {
-  primary: '#053cc8',
+  primary: '#6fa8dc',
   primaryLight: '#0430A0',
+  secondBlue: '#053dc7',
   background: 'rgb(242, 242, 242)',
   neutralBackground: '#F1F9FC',
   neutral05: '#1E1E2A',
@@ -200,7 +201,7 @@ export const ColorDefault = {
   },
 };
 export const ColorDark = {
-  primary: '#053cc8',
+  primary: '#6fa8dc',
   primaryLight: '#0430A0',
   background: 'rgb(242, 242, 242)',
   neutralBackground: '#F1F9FC',
@@ -396,4 +397,5 @@ export const ColorDark = {
     x: '#71C6FA',
     y: '#169FF3',
   },
+  secondBlue: '#053dc7'
 };

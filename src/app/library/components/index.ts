@@ -23,3 +23,6 @@ export * from './FastImage';
 
 export * from './LottieLoad';
 export * from './progressDialog'
+export * from './Header'
+export * from './touch-scale'
+export * from './masonry'

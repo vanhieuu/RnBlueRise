@@ -21,14 +21,14 @@ const ExpandableText = ({text, maxLines}: Props) => {
   const handleTextLayout = (event: any) => {
     if (isMeasured) return; // Avoid measuring multiple times
     const {height} = event.nativeEvent.layout;
-    textRef?.current?.measureLayout(textRef.current, (x, y, width, height) => {
-      // Check if the height exceeds the maxLines' height
-      const maxTextHeight = 18 * maxLines; // Assuming 18 is the line height for each line
-      if (height > maxTextHeight) {
-        setIsTruncated(true);
-      }
-      setIsMeasured(true);
-    });
+    // textRef?.current?.measureLayout(textRef.current, (x, y, width, height) => {
+    //   // Check if the height exceeds the maxLines' height
+    //   const maxTextHeight = 18 * maxLines; // Assuming 18 is the line height for each line
+    //   if (height > maxTextHeight) {
+    //     setIsTruncated(true);
+    //   }
+    //   setIsMeasured(true);
+    // });
   };
 
   return (
@@ -67,7 +67,7 @@ const rootStyles = (theme: AppTheme) =>
       marginTop: 5,
     },
     showMoreText: {
-      color: theme.colors.action,
+      // color: theme.colors.action,
       fontSize: 14,
     },
   });

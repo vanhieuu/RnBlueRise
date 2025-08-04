@@ -10,6 +10,7 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
 import {Block, SvgIcon, Text} from '@components';
 import {AppTheme, useTheme} from '@theme';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Props = {};
 
@@ -43,14 +44,14 @@ const BottomBar = (props: BottomTabBarProps) => {
   );
 
   return (
-    // <SafeAreaView edges={['right', 'left']} style={{overflow:'hidden',backgroundColor:'blue'}}>
+    <SafeAreaView edges={['right', 'left']} style={{overflow:'hidden'}}>
     <Block style={styles.container} colorTheme="background" shadow={true}>
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(0)}>
         <Block pointerEvents="none">
           <SvgIcon
             source=""
             size={24}
-            color={state.index === 0 ? '#2069B2' : theme.colors.body}
+            color={state.index === 0 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
         <Text style={styles.txtItem(state.index, 0)}>Trang chủ</Text>
@@ -60,7 +61,7 @@ const BottomBar = (props: BottomTabBarProps) => {
           <SvgIcon
             source="ActiveVideoIcon"
             size={24}
-            color={state.index === 1 ? '#2069B2' : theme.colors.body}
+            color={state.index === 1 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
         <Text style={styles.txtItem(state.index, 1)}>Video</Text>
@@ -71,7 +72,7 @@ const BottomBar = (props: BottomTabBarProps) => {
           <SvgIcon
             source=""
             size={24}
-            color={state.index === 2 ? '#2069B2' : theme.colors.body}
+            color={state.index === 2 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
         <Text style={styles.txtItem(state.index, 2)}>AI</Text>
@@ -82,7 +83,7 @@ const BottomBar = (props: BottomTabBarProps) => {
           <SvgIcon
             source=""
             size={24}
-            color={state.index === 3 ? '#2069B2' : theme.colors.body}
+            color={state.index === 3 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
         <Text style={styles.txtItem(state.index, 3)}>Audio</Text>
@@ -99,7 +100,7 @@ const BottomBar = (props: BottomTabBarProps) => {
         <Text style={styles.txtItem(state.index, 4)}>Cá nhân</Text>
       </TouchableOpacity>
     </Block>
-    // </SafeAreaView>
+    </SafeAreaView>
   );
 };
 

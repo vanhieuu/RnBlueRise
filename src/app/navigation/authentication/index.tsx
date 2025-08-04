@@ -3,10 +3,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import BottomTab from './BottomTab';
 import {APP_SCREEN, AuthenParamList} from '@navigation/screen-type';
+<<<<<<< Updated upstream
 
 import {useSelector} from '@common';
 import {shallowEqual} from 'react-redux';
 
+=======
+import TaskBoard from '@features/AuthenScreen/TaskBoard';
+>>>>>>> Stashed changes
 
 const Stack = createNativeStackNavigator<AuthenParamList>();
 
@@ -22,7 +26,11 @@ const Authentication = () => {
         component={BottomTab}
         options={{orientation: 'portrait'}}
       />
-     
+      <Stack.Screen
+        name={APP_SCREEN.TASK_BOARD}
+        component={TaskBoard}
+        options={{orientation: 'portrait'}}
+      />
     </Stack.Navigator>
   );
 };

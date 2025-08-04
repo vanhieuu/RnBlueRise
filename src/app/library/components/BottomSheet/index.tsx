@@ -53,8 +53,6 @@ const AppBottomSheetComponent = ({
         onClose={onClose}
         ref={bottomSheetRef}
         containerHeight={contentHeight}
-        
-        
         onChange={onChange}
         onAnimate={onAnimated}
         handleIndicatorStyle={{
@@ -90,13 +88,13 @@ export const AppBottomSheet = React.memo(AppBottomSheetComponent, isEqual);
 const rootStyles = (theme: AppTheme) =>
   StyleSheet.create({
     shadowStyle: {
-      // backgroundColor: 'black',
+      backgroundColor: 'black',
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
         height: 12,
       },
-      // shadowOpacity: 0.58,
+      shadowOpacity: 0.58,
       shadowRadius: 16.0,
       // backgroundColor:'red',
       elevation: 24,

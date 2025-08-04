@@ -11,3 +11,5 @@ export * from './dimension';
 export * from './hookHelper';
 export * from './i18n/translate';
 export * from './storage';
+export * from './style'
+export * from './statusFakeData'

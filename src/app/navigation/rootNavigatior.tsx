@@ -7,7 +7,12 @@ import {APP_SCREEN, RootStackParamList} from './screen-type';
 import NetInfo from '@react-native-community/netinfo';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+<<<<<<< Updated upstream
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+=======
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import Authentication from './authentication';
+>>>>>>> Stashed changes
 
 
 type Props = {};
@@ -33,19 +38,30 @@ const RootNavigator = (props: Props) => {
 
   // console.log(token,'ssss')
   return (
+<<<<<<< Updated upstream
     <SafeAreaProvider>
       {/* <Stack.Navigator screenOptions={{headerShown: false}}>
+=======
+    <SafeAreaView edges={['top']} style={{flex:1}}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+>>>>>>> Stashed changes
         <Stack.Screen
           name={APP_SCREEN.AUTHENTICATION}
           options={{headerShown: false}}
           component={Authentication}
         />
       </Stack.Navigator>
+<<<<<<< Updated upstream
       <LottieLoad /> */}
       <View>
         <Text>ehehehe</Text>
       </View>
     </SafeAreaProvider>
+=======
+      {/* <LottieLoad /> */}
+    
+    </SafeAreaView>
+>>>>>>> Stashed changes
     // </SafeAreaView>
   );
 };

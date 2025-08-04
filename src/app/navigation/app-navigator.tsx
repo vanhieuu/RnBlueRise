@@ -22,7 +22,9 @@ export const AppContainer = () => {
         <StatusBar backgroundColor={'transparent'} translucent />
         {!loadingApp && (
           <>
+            <PortalHost name={'Bottom-Sheet'} />
             <PortalHost name={'AppModal'} />
+
             <RootNavigator />
             <ProgressDialog />
             <SnackBar />

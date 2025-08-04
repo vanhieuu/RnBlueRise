@@ -9,6 +9,7 @@ const initialState: AppState = {
   showDialog: false,
   showLoadingScreen: false,
   internetState: true,
+  listStatus:[]
 };
 const appSlice = createSlice({
   name: SLICE_NAME.APP,
@@ -31,6 +32,25 @@ const appSlice = createSlice({
     },
     onEndProcess: state => {
       state.showDialog = false;
+    },
+    onSetListData:(state,action:PayloadAction<any>) =>{
+      state.listStatus = action.payload
+    },
+    hideItem: (state, action: PayloadAction<string>) => {
+      const item = state.listStatus.find?.(
+        (item: any) => item.id === action.payload,
+      );
+      if (item) {
+        item.visible = !item.visible;
+      }
+    },
+    showItem: (state, action: PayloadAction<string>) => {
+      const item = state.listStatus.find?.(
+        (item: any) => item.id === action.payload,
+      );
+      if (item) {
+        item.visible = true;
+      }
     },
   },
 });
