@@ -9,28 +9,18 @@ export enum APP_SCREEN {
   RESULT_AUTHEN = 'RESULT_AUTHEN',
   HOME = 'HOME',
   BOTTOM_TAB = 'BOTTOM_TAB',
-<<<<<<< Updated upstream
-=======
   REPORT_TAB = 'REPORT_TAB',
   TRENDING_UP_TAB = 'TRENDING_UP_TAB',
   USER_TAB = 'USER_TAB',
   TASK_BOARD = 'TASK_BOARD'
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
 
-export type BottomTabParamsList = {};
+export type BottomTabParamsList = {
+  [APP_SCREEN.HOME]:undefined,
+  [APP_SCREEN.REPORT_TAB]:undefined,
+  [APP_SCREEN.USER_TAB]:undefined,
+  [APP_SCREEN.TRENDING_UP_TAB]:undefined
+};
 
 export type UnAuthenParamList = {
   [APP_SCREEN.ONBOARDING]: undefined;
@@ -38,14 +28,10 @@ export type UnAuthenParamList = {
   [APP_SCREEN.SIGN_UP]: undefined;
   [APP_SCREEN.RESULT_AUTHEN]: any;
 };
-<<<<<<< Updated upstream
-export type AuthenParamList = {};
-=======
 export type AuthenParamList = {
   [APP_SCREEN.BOTTOM_TAB]:undefined;
   [APP_SCREEN.TASK_BOARD]:undefined
 };
->>>>>>> Stashed changes
 export type OfflineParamsList = {};
 
 export type RootStackParamList = {

@@ -33,6 +33,6 @@
     "jest.config.js",
       "style.d.ts"
   ],
-  "include": ["src","declarations.d.ts","reactnative.d.ts"]
+  "include": ["src","declarations.d.ts"]
  
 }
