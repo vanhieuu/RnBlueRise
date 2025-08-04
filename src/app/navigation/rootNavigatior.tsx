@@ -11,8 +11,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -51,9 +54,12 @@ const RootNavigator = (props: Props) => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <SafeAreaProvider>
       {/* <Stack.Navigator screenOptions={{headerShown: false}}>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -82,6 +88,9 @@ const RootNavigator = (props: Props) => {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

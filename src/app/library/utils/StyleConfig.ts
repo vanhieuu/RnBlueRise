@@ -53,4 +53,3 @@ export const propsToStyle = <T = any>(arrStyle: Array<T>) => {
     }, {});
 };
 
-export const URL_ICON= (icon:string)=> `https://openweathermap.org/img/wn/${icon}@2x.png`
