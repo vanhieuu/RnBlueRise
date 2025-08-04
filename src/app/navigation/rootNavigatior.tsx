@@ -8,8 +8,11 @@ import NetInfo from '@react-native-community/netinfo';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 =======
+=======
+>>>>>>> Stashed changes
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import Authentication from './authentication';
 >>>>>>> Stashed changes
@@ -39,9 +42,12 @@ const RootNavigator = (props: Props) => {
   // console.log(token,'ssss')
   return (
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <SafeAreaProvider>
       {/* <Stack.Navigator screenOptions={{headerShown: false}}>
 =======
+=======
+>>>>>>> Stashed changes
     <SafeAreaView edges={['top']} style={{flex:1}}>
       <Stack.Navigator screenOptions={{headerShown: false}}>
 >>>>>>> Stashed changes
@@ -61,6 +67,9 @@ const RootNavigator = (props: Props) => {
       {/* <LottieLoad /> */}
     
     </SafeAreaView>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     // </SafeAreaView>
   );

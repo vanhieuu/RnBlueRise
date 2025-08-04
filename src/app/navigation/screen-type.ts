@@ -15,6 +15,9 @@ export enum APP_SCREEN {
   TRENDING_UP_TAB = 'TRENDING_UP_TAB',
   USER_TAB = 'USER_TAB',
   TASK_BOARD = 'TASK_BOARD'
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
