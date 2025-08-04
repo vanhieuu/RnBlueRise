@@ -4,9 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTab from './BottomTab';
 import {APP_SCREEN, AuthenParamList} from '@navigation/screen-type';
 
-import {useSelector} from '@common';
-import {shallowEqual} from 'react-redux';
-
 
 const Stack = createNativeStackNavigator<AuthenParamList>();
 

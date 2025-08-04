@@ -22,13 +22,7 @@ const BottomBar = (props: BottomTabBarProps) => {
   const pressNavigator = React.useCallback(
     (curTab: any) => {
       startEffect(() => {
-        if (
-          curTab === 0 ||
-          curTab === 1 ||
-          curTab === 2 ||
-          curTab === 3 ||
-          curTab === 4
-        ) {
+        if (curTab === 0 || curTab === 1 || curTab === 2 || curTab === 3) {
           navigation.emit({
             type: 'tabPress',
             target: state.routes[curTab].name,
@@ -48,7 +42,7 @@ const BottomBar = (props: BottomTabBarProps) => {
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(0)}>
         <Block pointerEvents="none">
           <SvgIcon
-            source=""
+            source="HomeIcon"
             size={24}
             color={state.index === 0 ? '#2069B2' : theme.colors.body}
           />
@@ -58,45 +52,34 @@ const BottomBar = (props: BottomTabBarProps) => {
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(1)}>
         <Block pointerEvents="none">
           <SvgIcon
-            source="ActiveVideoIcon"
+            source="TrendingUpIcon"
             size={24}
             color={state.index === 1 ? '#2069B2' : theme.colors.body}
           />
         </Block>
-        <Text style={styles.txtItem(state.index, 1)}>Video</Text>
+        <Text style={styles.txtItem(state.index, 1)}>Chỉ số</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(2)}>
         <Block pointerEvents="none">
           <SvgIcon
-            source=""
+            source="ChartReportIcon"
             size={24}
             color={state.index === 2 ? '#2069B2' : theme.colors.body}
           />
         </Block>
-        <Text style={styles.txtItem(state.index, 2)}>AI</Text>
+        <Text style={styles.txtItem(state.index, 2)}>Báo cái</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(3)}>
         <Block pointerEvents="none">
           <SvgIcon
-            source=""
+            source="UserIcon"
             size={24}
             color={state.index === 3 ? '#2069B2' : theme.colors.body}
           />
         </Block>
-        <Text style={styles.txtItem(state.index, 3)}>Audio</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.item} onPress={() => pressNavigator(4)}>
-        <Block pointerEvents="none">
-          <SvgIcon
-            source="ActiveProfile"
-            size={24}
-            color={state.index === 4 ? '#2069B2' : theme.colors.body}
-          />
-        </Block>
-        <Text style={styles.txtItem(state.index, 4)}>Cá nhân</Text>
+        <Text style={styles.txtItem(state.index, 3)}>Tài khoản</Text>
       </TouchableOpacity>
     </Block>
     // </SafeAreaView>

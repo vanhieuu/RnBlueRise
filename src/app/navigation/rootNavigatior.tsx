@@ -8,6 +8,7 @@ import NetInfo from '@react-native-community/netinfo';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Authentication from './authentication';
 
 
 type Props = {};
@@ -34,17 +35,15 @@ const RootNavigator = (props: Props) => {
   // console.log(token,'ssss')
   return (
     <SafeAreaProvider>
-      {/* <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
           name={APP_SCREEN.AUTHENTICATION}
           options={{headerShown: false}}
           component={Authentication}
         />
       </Stack.Navigator>
-      <LottieLoad /> */}
-      <View>
-        <Text>ehehehe</Text>
-      </View>
+      {/* <LottieLoad /> */}
+    
     </SafeAreaProvider>
     // </SafeAreaView>
   );
