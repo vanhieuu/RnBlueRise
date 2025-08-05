@@ -4,13 +4,14 @@ import BottomSheet, {
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
 
-import { StyleSheet,  ViewStyle} from 'react-native';
+import {StyleSheet, ViewStyle} from 'react-native';
 
 import isEqual from 'react-fast-compare';
 import {AppBottomSheetProps} from './type';
 import {AppTheme, useTheme} from '@theme';
 import {Block} from '../Block';
 import {Portal} from '@components';
+import {createThemedStyles} from '@utils';
 
 const AppBottomSheetComponent = ({
   bottomSheetRef,
@@ -39,56 +40,60 @@ const AppBottomSheetComponent = ({
     (props: any) => (
       <BottomSheetBackdrop
         {...props}
-        appearsOnIndex={0}
         disappearsOnIndex={-1}
+        appearsOnIndex={0}
+        pressBehavior="close"
+        enableTouchThrough={true}
       />
     ),
     [],
   );
   return (
-    <Portal hostName={'Bottom-Sheet'}>
-      <BottomSheet
-        enableDynamicSizing={enableDynamicSizing}
-        snapPoints={snapPointsCustom ?? snapPoints}
-        onClose={onClose}
-        ref={bottomSheetRef}
-        containerHeight={contentHeight}
-        onChange={onChange}
-        onAnimate={onAnimated}
-        handleIndicatorStyle={{
-          backgroundColor: backgroundColor ?? colors.background,
-        }}
-        handleStyle={styles.handleStyle(backgroundColor)}
-        backgroundComponent={hiddenBackdrop ? null : renderBackdrop}
-        enablePanDownToClose={enablePanDownToClose ?? true}
-        enableHandlePanningGesture={false}
-        enableContentPanningGesture={true}
-        enableOverDrag={false}
-        index={index}
-        style={styles.shadowStyle}
-        {...otherProps}>
-        {useBottomSheetView ? (
-          <BottomSheetView
-            // scrollEnabled={scrollEnable}
-            style={styles.bottomSheetStyle}>
-            {children}
-          </BottomSheetView>
-        ) : (
-          <Block block color={backgroundColor ?? colors.background}>
-            {children}
-          </Block>
-        )}
-      </BottomSheet>
-    </Portal>
+    <BottomSheet
+      enableDynamicSizing={enableDynamicSizing}
+      snapPoints={snapPointsCustom ?? snapPoints}
+      onClose={onClose}
+      ref={bottomSheetRef}
+      containerHeight={contentHeight}
+      onChange={onChange}
+      onAnimate={onAnimated}
+      // containerStyle={{backgroundColor:'red'}}
+      handleIndicatorStyle={{
+        backgroundColor: backgroundColor ?? colors.background,
+      }}
+      handleStyle={styles.handleStyle(backgroundColor)}
+      backdropComponent={hiddenBackdrop ? undefined : renderBackdrop}
+      enablePanDownToClose={enablePanDownToClose ?? true}
+      enableHandlePanningGesture={false}
+      enableContentPanningGesture={true}
+      enableOverDrag={false}
+      backgroundStyle={{
+        backgroundColor: 'red',
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+      }}
+      index={index}
+      style={styles.shadowStyle}
+      {...otherProps}>
+      {useBottomSheetView ? (
+        <BottomSheetView style={styles.bottomSheetStyle}>
+          {children}
+        </BottomSheetView>
+      ) : (
+        <Block block color={backgroundColor ?? colors.background}>
+          {children}
+        </Block>
+      )}
+    </BottomSheet>
   );
 };
 
 export const AppBottomSheet = React.memo(AppBottomSheetComponent, isEqual);
 
 const rootStyles = (theme: AppTheme) =>
-  StyleSheet.create({
+  createThemedStyles({
     shadowStyle: {
-      backgroundColor: 'black',
+      // backgroundColor: 'black',
       shadowColor: '#000',
       shadowOffset: {
         width: 0,
@@ -98,7 +103,7 @@ const rootStyles = (theme: AppTheme) =>
       shadowRadius: 16.0,
       // backgroundColor:'red',
       elevation: 24,
-      zIndex:999999
+      zIndex: 999999,
     },
     bottomSheetStyle: {
       backgroundColor: theme.colors.background,
@@ -107,9 +112,10 @@ const rootStyles = (theme: AppTheme) =>
     handleStyle: (backgroundColor: any) =>
       ({
         // display: 'none',
-        backgroundColor: backgroundColor ?? theme.colors.background,
+        backgroundColor: theme.colors.white,
+
+        // backgroundColor:'red',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
-        // backgroundColor:'red'
       } as ViewStyle),
   });

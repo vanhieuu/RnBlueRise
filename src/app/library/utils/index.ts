@@ -13,3 +13,4 @@ export * from './i18n/translate';
 export * from './storage';
 export * from './StyleConfig'
 export * from './statusFakeData'
+export * from './style'

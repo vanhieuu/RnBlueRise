@@ -13,23 +13,20 @@ import RootNavigator from './rootNavigatior';
 
 export const AppContainer = () => {
   // state
-  const {loadingApp,  theme} = useSelector(state => state.app);
+  const {loadingApp, theme} = useSelector(state => state.app);
 
   // render
   return (
     <NavigationContainer ref={navigationRef} theme={MyAppTheme[theme]}>
       <>
         <StatusBar backgroundColor={'transparent'} translucent />
-        {!loadingApp && (
-          <>
-            <PortalHost name={'Bottom-Sheet'} />
-            <PortalHost name={'AppModal'} />
-
-            <RootNavigator />
-            <ProgressDialog />
-            <SnackBar />
-          </>
-        )}
+        <>
+          
+          {/* <PortalHost name={'AppModal'} /> */}
+          <RootNavigator />
+          <ProgressDialog />
+          <SnackBar />
+        </>
         <RXStore />
       </>
     </NavigationContainer>

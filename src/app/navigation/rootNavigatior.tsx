@@ -3,13 +3,11 @@ import React, {useEffect} from 'react';
 
 import {APP_SCREEN, RootStackParamList} from './screen-type';
 
-
 import NetInfo from '@react-native-community/netinfo';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import Authentication from './authentication';
-
 
 type Props = {};
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -34,7 +32,8 @@ const RootNavigator = (props: Props) => {
 
   // console.log(token,'ssss')
   return (
-    <SafeAreaProvider>
+    <SafeAreaView style={{flex: 1}} edges={['top']}>
+      
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
           name={APP_SCREEN.AUTHENTICATION}
@@ -43,8 +42,7 @@ const RootNavigator = (props: Props) => {
         />
       </Stack.Navigator>
       {/* <LottieLoad /> */}
-    
-    </SafeAreaProvider>
+    </SafeAreaView>
     // </SafeAreaView>
   );
 };

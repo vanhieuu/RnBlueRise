@@ -1,14 +1,49 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  NativeSyntheticEvent,
+  StyleSheet,
+  TextInputFocusEventData,
+} from 'react-native';
+import React, {useCallback, useState} from 'react';
 import isEqual from 'react-fast-compare';
+import {Block, Text} from '@components';
+import SearchBar from '@library/components/SearchBar';
+import {goBack} from '@navigation/navigation-services';
 
-type Props = {};
+type Props = {
+  value: string;
+  onChangeText: (txt: string) => void;
+  onSubmitText: (text: string) => void;
+};
 
-const SearchComponent = (props: Props) => {
+const SearchComponent = ({value, onChangeText, onSubmitText}: Props) => {
+  const [isFocus, setIsFocus] = useState<boolean>();
+
+  const onFocus = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      setIsFocus(true);
+    },
+    [],
+  );
+
+  const onBlur = useCallback(
+    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+      setIsFocus(false);
+    },
+    [],
+  );
+
   return (
-    <View>
-      <Text>SearchComponent</Text>
-    </View>
+    <Block marginHorizontal={8}>
+      <SearchBar
+        defaultText={value}
+        placeholder={'Nhập nội dung tìm kiếm'}
+        onSubmitText={onSubmitText}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        onChangeText={onChangeText}
+        onPressBack={goBack}
+      />
+    </Block>
   );
 };
 

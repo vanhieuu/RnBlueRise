@@ -5,13 +5,19 @@ import {
   TouchableOpacity,
   VirtualizedList,
 } from 'react-native';
-import React, {useCallback, useMemo, useRef, useState} from 'react';
+import React, {
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from 'react';
 import {AppBottomSheet, Block, Header, SvgIcon, Text} from '@components';
 import {FlashList, FlashListRef} from '@shopify/flash-list';
 import RenderListSelect from './components/RenderListSelect';
 import {wait} from '../Home';
 import {AppTheme, useTheme} from '@theme';
-import {createThemedStyles} from '@utils';
+import {createThemedStyles, StatusData} from '@utils';
 import {useMix, useRadian, useSharedTransition} from '@animated';
 import Animated, {useAnimatedStyle} from 'react-native-reanimated';
 import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
@@ -23,6 +29,7 @@ import BottomSheet, {
 import SearchComponent from './components/SearchComponent';
 import {SearchBar} from 'react-native-screens';
 
+
 type Props = {};
 
 const TrendingTabScreen = (props: Props) => {
@@ -30,7 +37,9 @@ const TrendingTabScreen = (props: Props) => {
   const styles = trendingUpStyle(theme);
   const bottomRef = useRef<BottomSheetMethods>(null);
   const flashRef = useRef<FlashListRef<any>>(null);
+  const [valueSearch, setValueSearch] = useState<string>('');
   const [show, setShow] = useState<boolean>(false);
+  const [isLoad, startEffect] = useTransition();
   const [selected, setSelected] = useState<any>(1);
   const [showOption, setShowOption] = useState<boolean>(false);
   const listData = useMemo(
@@ -54,7 +63,7 @@ const TrendingTabScreen = (props: Props) => {
     ],
     [],
   );
-
+  const snapPoints = useMemo(() => ['20%', '50%'], []);
   const keyExtractor = useCallback((item: any, index: number) => item.id, []);
   const handleSelected = useCallback(
     (id: number | string) => {
@@ -81,6 +90,7 @@ const TrendingTabScreen = (props: Props) => {
     (item: any, index: number) => index.toString(),
     [],
   );
+  
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
@@ -104,6 +114,16 @@ const TrendingTabScreen = (props: Props) => {
       setShowOption(false);
     }
   }, [showOption]);
+
+  const onChangeText = useCallback((text: string) => {
+    startEffect(() => {
+      setValueSearch(text);
+    });
+  }, []);
+
+  const onSubmitText = useCallback((text: string) => {
+    setValueSearch(text);
+  }, []);
 
   const getItem = (_: any, index: number) => {
     switch (index) {
@@ -147,7 +167,17 @@ const TrendingTabScreen = (props: Props) => {
       case 2:
         return (
           <Block>
-            <SearchComponent />
+            <SearchComponent
+              value={valueSearch}
+              onChangeText={onChangeText}
+              onSubmitText={onSubmitText}
+            />
+          </Block>
+        );
+      case 3:
+        return (
+          <Block>
+      
           </Block>
         );
       default:
@@ -155,14 +185,7 @@ const TrendingTabScreen = (props: Props) => {
     }
   };
 
-  const renderBackdrop = (props: any) => (
-    <BottomSheetBackdrop
-      {...props}
-      disappearsOnIndex={1}
-      appearsOnIndex={2}
-      pressBehavior={'close'}
-    />
-  );
+ 
 
   return (
     <>
@@ -172,6 +195,8 @@ const TrendingTabScreen = (props: Props) => {
         getItemCount={getItemCount}
         stickyHeaderHiddenOnScroll={false}
         bounces={true}
+        nestedScrollEnabled={true}
+        
         decelerationRate={'fast'}
         initialScrollIndex={0}
         refreshControl={
@@ -198,13 +223,16 @@ const TrendingTabScreen = (props: Props) => {
           />
         }
       />
-      <BottomSheet
-        ref={bottomRef}
+      <AppBottomSheet
+        bottomSheetRef={bottomRef}
         enableDynamicSizing
-        enablePanDownToClose
-        backdropComponent={renderBackdrop}>
+        onChange={() => setShowOption(false)}
+        hiddenBackdrop={false}
+        backgroundColor={theme.colors.white}
+        // snapPointsCustom={snapPoints}
+        enablePanDownToClose>
         <BottomSheetView style={{flex: 1}}>
-          <Block>
+          <Block block>
             {listData.map((item, idex) => {
               return (
                 <TouchableOpacity
@@ -220,7 +248,7 @@ const TrendingTabScreen = (props: Props) => {
             })}
           </Block>
         </BottomSheetView>
-      </BottomSheet>
+      </AppBottomSheet>
     </>
   );
 };
