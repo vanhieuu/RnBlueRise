@@ -5,9 +5,10 @@ import {
   VirtualizedList,
 } from 'react-native';
 import React, {useState} from 'react';
-import {Block, Text, Header} from '@components';
+import {Block, Text, Header, BaseScreenLayout} from '@components';
 import ListBaseStatus from './component/ListBaseStatus';
 import ChartStatistical from './component/StatisticalMonth';
+import {images} from '@assets/image';
 
 export const wait = (timeout: number) => {
   return new Promise<void>(resolve => {
@@ -37,19 +38,22 @@ const HomeTabScreen = () => {
       case 0:
         return <ListBaseStatus />;
       case 1:
-        return <ChartStatistical/>;
+        return <ChartStatistical />;
       default:
         return null;
     }
   };
 
   return (
-    <Block block>
+    <BaseScreenLayout
+      isFullScreenBackground={true}
+      contentStyle={styles.container}
+      backgroundImage={images.bgFull}>
       <VirtualizedList
         data={[]}
         renderItem={() => null}
         getItemCount={getItemCount}
-        stickyHeaderHiddenOnScroll={false}
+        stickyHeaderHiddenOnScroll={true}
         bounces={true}
         decelerationRate={'fast'}
         initialScrollIndex={0}
@@ -76,10 +80,15 @@ const HomeTabScreen = () => {
           />
         }
       />
-    </Block>
+    </BaseScreenLayout>
   );
 };
 
 export default HomeTabScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'transparent',
+  },
+});

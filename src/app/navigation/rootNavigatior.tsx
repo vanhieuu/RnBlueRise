@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import Authentication from './authentication';
+import DetailReportScreen from '@features/AuthenScreen/DetailReport';
 
 type Props = {};
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,12 +34,17 @@ const RootNavigator = (props: Props) => {
   // console.log(token,'ssss')
   return (
     <SafeAreaView style={{flex: 1}} edges={['top']}>
-      
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen
           name={APP_SCREEN.AUTHENTICATION}
           options={{headerShown: false}}
           component={Authentication}
+        />
+
+        <Stack.Screen
+          name={APP_SCREEN.DETAIL_REPORT}
+          options={{headerShown: false}}
+          component={DetailReportScreen}
         />
       </Stack.Navigator>
       {/* <LottieLoad /> */}

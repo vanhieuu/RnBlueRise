@@ -32,10 +32,6 @@ const ListBaseStatus = (props: Props) => {
 
   const onPressPagination = (index: number) => {
     ref.current?.scrollTo({
-      /**
-       * Calculate the difference between the current index and the target index
-       * to ensure that the carousel scrolls to the nearest index
-       */
       count: index - progress.value,
       animated: true,
     });
@@ -68,7 +64,7 @@ const ListBaseStatus = (props: Props) => {
   }, []);
 
   return (
-    <Block>
+    <Block colorTheme='body' block>
       <Block
         direction="row"
         justifyContent="space-between"

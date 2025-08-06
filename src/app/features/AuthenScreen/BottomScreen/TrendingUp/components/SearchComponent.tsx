@@ -5,8 +5,8 @@ import {
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 import isEqual from 'react-fast-compare';
-import {Block, Text} from '@components';
-import SearchBar from '@library/components/SearchBar';
+import {Block, SearchBar} from '@components';
+
 import {goBack} from '@navigation/navigation-services';
 
 type Props = {

@@ -69,7 +69,7 @@ const BottomBar = (props: BottomTabBarProps) => {
             color={state.index === 2 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
-        <Text style={styles.txtItem(state.index, 2)}>Báo cái</Text>
+        <Text style={styles.txtItem(state.index, 2)}>Báo cá0</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(3)}>

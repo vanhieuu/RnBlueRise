@@ -10,8 +10,9 @@ import {
   NativeSyntheticEvent,
 } from 'react-native';
 import {SearchBarProps} from './type';
+import isEqual from 'react-fast-compare';
 
-const SearchBar = ({
+const SearchBarComponent = ({
   defaultText,
   placeholder,
   onSubmitText,
@@ -137,4 +138,4 @@ const SearchBar = ({
     </Block>
   );
 };
-export default SearchBar;
+export const SearchBar = React.memo(SearchBarComponent,isEqual);

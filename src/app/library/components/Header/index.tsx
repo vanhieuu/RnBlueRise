@@ -1,4 +1,4 @@
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {ImageBackground, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import isEqual from 'react-fast-compare';
 import {HeaderComponentType} from './type';
@@ -8,17 +8,19 @@ import {createThemedStyles} from '@utils';
 import {AppTheme, useTheme} from '@theme';
 import FastImage from '@d11/react-native-fast-image';
 import {SvgIcon} from '../svg-icon';
+import {images} from '@assets/image';
 
 const HeaderComponent = ({
   imageUrl,
   nameOfEducationCenter,
   userName,
   setShow,
+  backgroundColor
 }: HeaderComponentType) => {
   const theme = useTheme();
   const styles = rootStyles(theme);
   return (
-    <Block direction="row" colorTheme="primary" paddingVertical={10}>
+    <Block direction="row" paddingVertical={10} color={backgroundColor ?? theme.colors.transparent}>
       <TouchableOpacity
         style={styles.buttonImage}
         onPress={() => setShow(true)}>
@@ -35,7 +37,7 @@ const HeaderComponent = ({
       </TouchableOpacity>
       <Block justifyContent="center" paddingLeft={12}>
         <Block>
-          <Text fontSize={16} color="black" fontWeight="700" fontFamily="bold">
+          <Text fontSize={16} color="white" fontWeight="700" fontFamily="bold">
             {userName}
           </Text>
         </Block>

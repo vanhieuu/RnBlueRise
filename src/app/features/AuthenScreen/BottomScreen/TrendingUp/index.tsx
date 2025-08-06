@@ -12,7 +12,14 @@ import React, {
   useState,
   useTransition,
 } from 'react';
-import {AppBottomSheet, Block, Header, SvgIcon, Text} from '@components';
+import {
+  AppBottomSheet,
+  BaseScreenLayout,
+  Block,
+  Header,
+  SvgIcon,
+  Text,
+} from '@components';
 import {FlashList, FlashListRef} from '@shopify/flash-list';
 import RenderListSelect from './components/RenderListSelect';
 import {wait} from '../Home';
@@ -28,7 +35,9 @@ import BottomSheet, {
 } from '@gorhom/bottom-sheet';
 import SearchComponent from './components/SearchComponent';
 import {SearchBar} from 'react-native-screens';
-
+import RenderListItem from './components/RenderListItem';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {images} from '@assets/image';
 
 type Props = {};
 
@@ -82,7 +91,7 @@ const TrendingTabScreen = (props: Props) => {
 
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const getItemCount = (data: any): number => 4;
+  const getItemCount = (data: any): number => 5;
   const cellRender: React.ComponentType<
     CellRendererProps<React.JSX.Element | null>
   > = React.useCallback(({item}) => item, []);
@@ -90,7 +99,7 @@ const TrendingTabScreen = (props: Props) => {
     (item: any, index: number) => index.toString(),
     [],
   );
-  
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
@@ -124,32 +133,61 @@ const TrendingTabScreen = (props: Props) => {
   const onSubmitText = useCallback((text: string) => {
     setValueSearch(text);
   }, []);
+  function normalizeText(str: string): string {
+    return str
+      .normalize('NFD') // decompose combined letters
+      .replace(/[\u0300-\u036f]/g, '') // strip diacritics
+      .toLowerCase(); // case‐insensitive
+  }
+
+  const filteredStatusData = useMemo(
+    () =>
+      StatusData.filter(item => {
+        // normalize both sides
+        const title = normalizeText(item.title);
+        const query = normalizeText(valueSearch);
+        return title.includes(query);
+      }),
+    [valueSearch],
+  );
 
   const getItem = (_: any, index: number) => {
     switch (index) {
       case 0:
         return (
-          <Block marginHorizontal={16} marginVertical={16} direction="row">
-            <Text>Chọn chi nhánh: </Text>
-            <TouchableOpacity
-              style={styles.dropBoxContain}
-              onPress={onPressArrow}>
-              <Text fontSize={12} fontWeight="400">
-                {listData.find(item => item.id === selected)?.label || ''}
-              </Text>
-              <Animated.View style={[arrowStyle]}>
-                <SvgIcon source="ArrowUp" color="white" size={20} />
-              </Animated.View>
-            </TouchableOpacity>
-          </Block>
+          <Header
+            userName={'Tên user'}
+            nameOfEducationCenter={'Tên trung tâm GD'}
+            imageUrl={''}
+            setShow={setShow}
+          />
         );
       case 1:
+        return (
+          <Block colorTheme="body" marginTop={20}>
+            <Block marginHorizontal={16} marginVertical={16} direction="row">
+              <Text>Chọn chi nhánh: </Text>
+              <TouchableOpacity
+                style={styles.dropBoxContain}
+                onPress={onPressArrow}>
+                <Text fontSize={12} fontWeight="400">
+                  {listData.find(item => item.id === selected)?.label || ''}
+                </Text>
+                <Animated.View style={[arrowStyle]}>
+                  <SvgIcon source="ArrowUp" color="white" size={20} />
+                </Animated.View>
+              </TouchableOpacity>
+            </Block>
+          </Block>
+        );
+      case 2:
         return (
           <FlashList
             data={listData}
             keyExtractor={keyExtractor}
             horizontal
             ref={flashRef}
+            contentContainerStyle={{backgroundColor: theme.colors.body}}
             showsHorizontalScrollIndicator={false}
             renderItem={({item, index}) => {
               return (
@@ -164,9 +202,9 @@ const TrendingTabScreen = (props: Props) => {
             }}
           />
         );
-      case 2:
+      case 3:
         return (
-          <Block>
+          <Block colorTheme="body">
             <SearchComponent
               value={valueSearch}
               onChangeText={onChangeText}
@@ -174,29 +212,27 @@ const TrendingTabScreen = (props: Props) => {
             />
           </Block>
         );
-      case 3:
-        return (
-          <Block>
-      
-          </Block>
-        );
+      case 4:
+        return <RenderListItem data={filteredStatusData} />;
+
       default:
         return null;
     }
   };
 
- 
-
   return (
-    <>
+    <BaseScreenLayout
+      isFullScreenBackground={true}
+      contentStyle={styles.container}
+      backgroundImage={images.bgFull}>
       <VirtualizedList
         data={[]}
         renderItem={() => null}
         getItemCount={getItemCount}
-        stickyHeaderHiddenOnScroll={false}
         bounces={true}
+        // stickyHeaderIndices={[0]}
+        stickyHeaderHiddenOnScroll={true}
         nestedScrollEnabled={true}
-        
         decelerationRate={'fast'}
         initialScrollIndex={0}
         refreshControl={
@@ -210,18 +246,8 @@ const TrendingTabScreen = (props: Props) => {
         getItem={getItem}
         showsVerticalScrollIndicator={false}
         keyboardDismissMode="on-drag"
-        stickyHeaderIndices={[0]}
-        contentContainerStyle={{}}
         keyboardShouldPersistTaps="never"
         CellRendererComponent={cellRender}
-        ListHeaderComponent={
-          <Header
-            userName={'Tên user'}
-            nameOfEducationCenter={'Tên trung tâm GD'}
-            imageUrl={''}
-            setShow={setShow}
-          />
-        }
       />
       <AppBottomSheet
         bottomSheetRef={bottomRef}
@@ -249,7 +275,7 @@ const TrendingTabScreen = (props: Props) => {
           </Block>
         </BottomSheetView>
       </AppBottomSheet>
-    </>
+    </BaseScreenLayout>
   );
 };
 
@@ -264,6 +290,10 @@ const trendingUpStyle = (theme: AppTheme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       flexDirection: 'row',
+    },
+    container: {
+      flex: 1,
+      backgroundColor: 'transparent',
     },
     selectedSheetItem: (selected, item) => ({
       paddingVertical: 10,

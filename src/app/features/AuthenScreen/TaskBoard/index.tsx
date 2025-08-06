@@ -3,9 +3,7 @@ import {
   LogBox,
   Pressable,
   SafeAreaView,
-  StyleSheet,
   View,
-  ViewProps,
   TextStyle,
   ViewStyle,
   TouchableOpacity,
@@ -24,7 +22,7 @@ import {dispatch, useSelector} from '@common';
 import {appActions} from '@store/appRedux/reducer';
 import {shallowEqual} from 'react-redux';
 import {createThemedStyles} from '@utils';
-import { goBack } from '@navigation/navigation-services';
+import {goBack} from '@navigation/navigation-services';
 
 LogBox.ignoreLogs([
   `[Reanimated] Tried to modify key "current" of an object which has been already passed to a worklet.`,
@@ -154,7 +152,8 @@ const TaskBoard = () => {
             alignItems: 'center',
             width: 30,
             height: 30,
-          }}  onPress={() => goBack()} >
+          }}
+          onPress={() => goBack()}>
           <SvgIcon source="ArrowLeft" size={24} />
         </TouchableOpacity>
         <Text fontSize={20} fontWeight="bold">

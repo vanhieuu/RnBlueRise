@@ -4,7 +4,7 @@ import {PieChart} from 'react-native-svg-charts';
 import {LineChart, Grid, XAxis, YAxis} from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 import {Circle, G, Line, Rect, Text as SvgText} from 'react-native-svg';
-import {Block, Text} from '@components';
+import {Block, PieChartCard, PieSlice, Text} from '@components';
 
 const {width} = Dimensions.get('window');
 
@@ -51,10 +51,10 @@ const HighlightLine = ({
 );
 
 const AnimatedChartCard = () => {
-  const pieData = [
-    {value: 85, label: 'Chi nhánh 1', color: 'green'},
-    {value: 35, label: 'Chi nhánh 3', color: 'blue'},
-    {value: 18, label: 'Chi nhánh 2', color: 'red'},
+  const pieData: PieSlice[] = [
+    {key: 'cn1', label: 'Chi nhánh 1', value: 25, color: '#4caf50'},
+    {key: 'cn2', label: 'Chi nhánh 2', value: 12, color: '#f44336'},
+    {key: 'cn3', label: 'Chi nhánh 3', value: 63, color: '#2196f3'},
   ];
 
   const collected = [200, 150, 180, 220, 300, 350, 500];
@@ -77,7 +77,7 @@ const AnimatedChartCard = () => {
   );
 
   return (
-    <Block padding={16}>
+    <Block padding={16} block colorTheme="body">
       <Block marginBottom={10}>
         <Text fontSize={14} fontWeight="bold">
           Thống kê tháng này
@@ -90,25 +90,11 @@ const AnimatedChartCard = () => {
         padding={16}
         borderRadius={12}
         marginBottom={20}>
-        <Text style={{marginBottom: 10}} fontWeight="400" fontSize={12}>
-          Tổng số học viên mới theo chi nhánh
-        </Text>
-        <PieChart
-          style={{height: 180}}
-          valueAccessor={({item}) => item.value}
-          data={pieData.map(p => ({
-            value: p.value,
-            svg: {fill: p.color},
-            key: p.label,
-          }))}
-          outerRadius={'95%'}
+        <PieChartCard
+          isCheckBox={false}
+          title="Tổng số học viên mới theo chi nhánh"
+          data={pieData}
         />
-        {pieData.map((item, idx) => (
-          <Block direction="row" alignItems="center" marginTop={6} key={idx}>
-            <Block width={10} height={10} color={item.color} marginRight={6} />
-            <Text>{item.label}</Text>
-          </Block>
-        ))}
       </Block>
 
       {/* Line Chart Section */}
