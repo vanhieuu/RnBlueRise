@@ -7,7 +7,10 @@ export interface AppState{
     showDialog:boolean,
     internetState?:any,
     showLoadingScreen:boolean,
-    listStatus:any[]
+    listStatus:any[],
+    token:string,
+    isLogin:boolean,
+    rememberLogin:boolean
 }
 
 

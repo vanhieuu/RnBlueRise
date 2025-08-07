@@ -86,7 +86,12 @@ const PieChartCardComponent: React.FC<PieChartCardProps> = ({
         )}
 
         <Block>
-          <PieChart style={{height: 200, width: 200}} data={chartData}>
+          <PieChart
+            animate={true}
+            animationDuration={300}
+            
+            style={{height: 200, width: 200}}
+            data={chartData}>
             <Labels />
           </PieChart>
         </Block>

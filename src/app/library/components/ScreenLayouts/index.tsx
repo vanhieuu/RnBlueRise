@@ -34,7 +34,7 @@ export const BaseScreenLayout: React.FC<BaseScreenLayoutProps> = React.memo(
     backgroundColor = '#F4F4F4',
     contentStyle,
     roundedContent = true,
-    lightStatusBar = true,
+    lightStatusBar = false,
     renderHeader,
   }) => {
     const insets = useSafeAreaInsets();
@@ -65,11 +65,11 @@ export const BaseScreenLayout: React.FC<BaseScreenLayoutProps> = React.memo(
     // If fullscreen background is requested
     if (isFullScreenBackground && backgroundImage) {
       return (
-        <View style={baseScreenLayoutStyles.container}>
+        <SafeAreaView edges={['bottom','top']} style={baseScreenLayoutStyles.container}>
           <StatusBar
             translucent
             backgroundColor="transparent"
-            barStyle={lightStatusBar ? 'light-content' : 'dark-content'}
+            barStyle={'dark-content'}
           />
           <ImageBackground
             source={backgroundImage}
@@ -80,7 +80,7 @@ export const BaseScreenLayout: React.FC<BaseScreenLayoutProps> = React.memo(
             imageStyle={baseScreenLayoutStyles.backgroundImageStyle}>
             {renderContent()}
           </ImageBackground>
-        </View>
+        </SafeAreaView>
       );
     }
 

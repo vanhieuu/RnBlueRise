@@ -91,7 +91,7 @@ const AnimatedChartCard = () => {
         borderRadius={12}
         marginBottom={20}>
         <PieChartCard
-          isCheckBox={false}
+          isCheckBox={true}
           title="Tổng số học viên mới theo chi nhánh"
           data={pieData}
         />

@@ -5,4 +5,5 @@ export type HeaderComponentType = {
     imageUrl:string ,
     setShow:React.Dispatch<React.SetStateAction<boolean>>;
     backgroundColor?:string
+    showImageBackground?:boolean
 }

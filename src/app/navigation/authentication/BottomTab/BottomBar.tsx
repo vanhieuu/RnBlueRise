@@ -10,7 +10,7 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
 import {Block, SvgIcon, Text} from '@components';
 import {AppTheme, useTheme} from '@theme';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 type Props = {};
 
@@ -23,7 +23,7 @@ const BottomBar = (props: BottomTabBarProps) => {
   const pressNavigator = React.useCallback(
     (curTab: any) => {
       startEffect(() => {
-        if (curTab === 0 || curTab === 1 || curTab === 2 || curTab === 3) {
+        if (curTab === 0 || curTab === 1 || curTab === 2) {
           navigation.emit({
             type: 'tabPress',
             target: state.routes[curTab].name,
@@ -38,7 +38,6 @@ const BottomBar = (props: BottomTabBarProps) => {
   );
 
   return (
-    <SafeAreaView edges={['right', 'left']} style={{overflow:'hidden'}}>
     <Block style={styles.container} colorTheme="background" shadow={true}>
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(0)}>
         <Block pointerEvents="none">
@@ -72,7 +71,7 @@ const BottomBar = (props: BottomTabBarProps) => {
         <Text style={styles.txtItem(state.index, 2)}>Báo cá0</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.item} onPress={() => pressNavigator(3)}>
+      {/* <TouchableOpacity style={styles.item} onPress={() => pressNavigator(3)}>
         <Block pointerEvents="none">
           <SvgIcon
             source="UserIcon"
@@ -81,9 +80,8 @@ const BottomBar = (props: BottomTabBarProps) => {
           />
         </Block>
         <Text style={styles.txtItem(state.index, 3)}>Tài khoản</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </Block>
-    </SafeAreaView>
   );
 };
 

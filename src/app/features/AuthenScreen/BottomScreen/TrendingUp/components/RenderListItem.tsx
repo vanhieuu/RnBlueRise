@@ -127,7 +127,7 @@ const RenderListItem = ({data}: Props) => {
         <Block style={modalStyles.overlay}>
           <Block style={modalStyles.content}>
             <Block direction="row">
-              <Block alignSelf="center" block paddingVertical={4}>
+              <Block alignSelf="center" block paddingVertical={4} >
                 <Text fontSize={16} textAlign="center" fontWeight="bold">
                   Sửa mục tiêu
                 </Text>
@@ -163,6 +163,7 @@ const RenderListItem = ({data}: Props) => {
                 <TextInput
                   style={modalStyles.input}
                   keyboardType="numeric"
+                  
                   // value={inputValue}
                   onChangeText={setInputValue}
                   placeholder="Nhập mục tiêu mới"
@@ -293,6 +294,7 @@ const modalsStyles = (theme: AppTheme) =>
       padding: 8,
       flex: 1,
       marginRight: 10,
+      color:theme.colors.black
       // marginBottom: 16,
     },
     buttonRow: {

@@ -1,5 +1,7 @@
 import {
   CellRendererProps,
+  FlatList,
+  ListRenderItemInfo,
   RefreshControl,
   StyleSheet,
   TouchableOpacity,
@@ -7,6 +9,7 @@ import {
 } from 'react-native';
 import React, {
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -28,18 +31,13 @@ import {createThemedStyles, StatusData} from '@utils';
 import {useMix, useRadian, useSharedTransition} from '@animated';
 import Animated, {useAnimatedStyle} from 'react-native-reanimated';
 import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
-import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetScrollView,
-  BottomSheetView,
-} from '@gorhom/bottom-sheet';
+import {BottomSheetView} from '@gorhom/bottom-sheet';
 import SearchComponent from './components/SearchComponent';
-import {SearchBar} from 'react-native-screens';
 import RenderListItem from './components/RenderListItem';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {images} from '@assets/image';
 
 type Props = {};
+const ITEM_WIDTH = 100;
 
 const TrendingTabScreen = (props: Props) => {
   const theme = useTheme();
@@ -47,6 +45,8 @@ const TrendingTabScreen = (props: Props) => {
   const bottomRef = useRef<BottomSheetMethods>(null);
   const flashRef = useRef<FlashListRef<any>>(null);
   const [valueSearch, setValueSearch] = useState<string>('');
+  const flatRef = useRef<FlatList<number>>(null);
+
   const [show, setShow] = useState<boolean>(false);
   const [isLoad, startEffect] = useTransition();
   const [selected, setSelected] = useState<any>(1);
@@ -72,7 +72,7 @@ const TrendingTabScreen = (props: Props) => {
     ],
     [],
   );
-  const snapPoints = useMemo(() => ['20%', '50%'], []);
+
   const keyExtractor = useCallback((item: any, index: number) => item.id, []);
   const handleSelected = useCallback(
     (id: number | string) => {
@@ -116,10 +116,10 @@ const TrendingTabScreen = (props: Props) => {
 
   const onPressArrow = useCallback(() => {
     if (!showOption) {
-      bottomRef.current?.expand();
+      // bottomRef.current?.expand();
       setShowOption(!showOption);
     } else {
-      bottomRef.current?.close();
+      // bottomRef.current?.close();
       setShowOption(false);
     }
   }, [showOption]);
@@ -150,21 +150,21 @@ const TrendingTabScreen = (props: Props) => {
       }),
     [valueSearch],
   );
+  useEffect(() => {
+    if (showOption && flashRef.current) {
+      flashRef.current.scrollToIndex({
+        index: selected - 1,
+        animated: true,
+        viewPosition: 0.5,
+      });
+    }
+  }, [showOption, selected]);
 
   const getItem = (_: any, index: number) => {
     switch (index) {
       case 0:
         return (
-          <Header
-            userName={'Tên user'}
-            nameOfEducationCenter={'Tên trung tâm GD'}
-            imageUrl={''}
-            setShow={setShow}
-          />
-        );
-      case 1:
-        return (
-          <Block colorTheme="body" marginTop={20}>
+          <Block colorTheme="body">
             <Block marginHorizontal={16} marginVertical={16} direction="row">
               <Text>Chọn chi nhánh: </Text>
               <TouchableOpacity
@@ -178,31 +178,31 @@ const TrendingTabScreen = (props: Props) => {
                 </Animated.View>
               </TouchableOpacity>
             </Block>
+            {showOption && (
+              <FlashList
+                data={listData}
+                keyExtractor={keyExtractor}
+                horizontal
+                ref={flashRef}
+                contentContainerStyle={{backgroundColor: theme.colors.body}}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({item, index}) => {
+                  return (
+                    <RenderListSelect
+                      key={index}
+                      id={item.id}
+                      label={item.label}
+                      handleSelected={handleSelected}
+                      selected={selected}
+                    />
+                  );
+                }}
+              />
+            )}
           </Block>
         );
-      case 2:
-        return (
-          <FlashList
-            data={listData}
-            keyExtractor={keyExtractor}
-            horizontal
-            ref={flashRef}
-            contentContainerStyle={{backgroundColor: theme.colors.body}}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => {
-              return (
-                <RenderListSelect
-                  key={index}
-                  id={item.id}
-                  label={item.label}
-                  handleSelected={handleSelected}
-                  selected={selected}
-                />
-              );
-            }}
-          />
-        );
-      case 3:
+
+      case 1:
         return (
           <Block colorTheme="body">
             <SearchComponent
@@ -212,7 +212,7 @@ const TrendingTabScreen = (props: Props) => {
             />
           </Block>
         );
-      case 4:
+      case 2:
         return <RenderListItem data={filteredStatusData} />;
 
       default:
@@ -230,11 +230,12 @@ const TrendingTabScreen = (props: Props) => {
         renderItem={() => null}
         getItemCount={getItemCount}
         bounces={true}
-        // stickyHeaderIndices={[0]}
-        stickyHeaderHiddenOnScroll={true}
+        stickyHeaderIndices={[0]}
+        stickyHeaderHiddenOnScroll={false}
         nestedScrollEnabled={true}
         decelerationRate={'fast'}
         initialScrollIndex={0}
+        style={{backgroundColor: theme.colors.body}}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -245,36 +246,18 @@ const TrendingTabScreen = (props: Props) => {
         keyExtractor={keyExtractorVirtual}
         getItem={getItem}
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={() => (
+          <Header
+            userName={'Tên user'}
+            nameOfEducationCenter={'Tên trung tâm GD'}
+            imageUrl={''}
+            setShow={setShow}
+          />
+        )}
         keyboardDismissMode="on-drag"
         keyboardShouldPersistTaps="never"
         CellRendererComponent={cellRender}
       />
-      <AppBottomSheet
-        bottomSheetRef={bottomRef}
-        enableDynamicSizing
-        onChange={() => setShowOption(false)}
-        hiddenBackdrop={false}
-        backgroundColor={theme.colors.white}
-        // snapPointsCustom={snapPoints}
-        enablePanDownToClose>
-        <BottomSheetView style={{flex: 1}}>
-          <Block block>
-            {listData.map((item, idex) => {
-              return (
-                <TouchableOpacity
-                  key={idex}
-                  onPress={() => handleSelected(item.id)}
-                  style={styles.selectedSheetItem(selected, item)}>
-                  <Text>{item.label}</Text>
-                  {selected === item.id && (
-                    <SvgIcon source="CheckSmall" size={20} />
-                  )}
-                </TouchableOpacity>
-              );
-            })}
-          </Block>
-        </BottomSheetView>
-      </AppBottomSheet>
     </BaseScreenLayout>
   );
 };
@@ -306,4 +289,30 @@ const trendingUpStyle = (theme: AppTheme) =>
       justifyContent: 'space-between',
       //   marginHorizontal: 16,
     }),
+    monthButton: {
+      width: ITEM_WIDTH,
+      paddingVertical: 8,
+      marginRight: 8,
+      backgroundColor: '#fff',
+      borderWidth: 1,
+      borderColor: '#ccc',
+      borderRadius: 4,
+      alignItems: 'center',
+      paddingHorizontal: 10,
+    },
+    monthButtonActive: {
+      backgroundColor: '#007AFF',
+      borderColor: '#007AFF',
+    },
+    monthText: {
+      fontSize: 13,
+      color: '#333',
+    },
+    monthTextActive: {
+      color: '#fff',
+      fontWeight: '600',
+    },
+    list: {
+      paddingVertical: 8,
+    },
   });

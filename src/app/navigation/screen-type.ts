@@ -14,7 +14,8 @@ export enum APP_SCREEN {
   TRENDING_UP_TAB = 'TRENDING_UP_TAB',
   USER_TAB = 'USER_TAB',
   TASK_BOARD = 'TASK_BOARD',
-  DETAIL_REPORT = 'DETAIL_REPORT'
+  DETAIL_REPORT = 'DETAIL_REPORT',
+  FORGOT_PASSWORD_NAV= 'FORGOT_PASSWORD_NAV'
 }
 
 export type BottomTabParamsList = {
@@ -29,6 +30,7 @@ export type UnAuthenParamList = {
   [APP_SCREEN.SIGN_IN]: undefined;
   [APP_SCREEN.SIGN_UP]: undefined;
   [APP_SCREEN.RESULT_AUTHEN]: any;
+  [APP_SCREEN.FORGOT_PASSWORD_NAV]:any
 };
 export type AuthenParamList = {
   [APP_SCREEN.BOTTOM_TAB]:undefined;

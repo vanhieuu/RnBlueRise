@@ -57,10 +57,10 @@ export const reportData: Report[] = [
     title: 'Báo cáo giờ dạy giáo viên',
     entries: ['Tổng số giáo viên', 'Tổng số buổi dạy', 'Tổng số giờ dạy'],
   },
-  {
-    type: ReportType.DOCUMENT,
-    Icon: 'DigitizedDocumentIcon',
-    title: 'Học liệu số hoá',
-    entries: ['Tổng số câu hỏi, nhóm câu', 'Tổng số đề thi', 'Số lượt sử dụng'],
-  },
+  // {
+  //   type: ReportType.DOCUMENT,
+  //   Icon: 'DigitizedDocumentIcon',
+  //   title: 'Học liệu số hoá',
+  //   entries: ['Tổng số câu hỏi, nhóm câu', 'Tổng số đề thi', 'Số lượt sử dụng'],
+  // },
 ];

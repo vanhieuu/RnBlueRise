@@ -1,8 +1,4 @@
-import {
-  NativeSyntheticEvent,
-  StyleSheet,
-  TextInputFocusEventData,
-} from 'react-native';
+
 import React, {useCallback, useMemo, useState, useTransition} from 'react';
 import {BaseScreenLayout, Block, Header, SearchBar} from '@components';
 import {images} from '@assets/image';

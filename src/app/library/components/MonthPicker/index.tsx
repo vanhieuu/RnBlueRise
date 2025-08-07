@@ -142,6 +142,7 @@ const styles = createThemedStyles({
     borderColor: '#ccc',
     borderRadius: 4,
     alignItems: 'center',
+    paddingHorizontal:10
   },
   monthButtonActive: {
     backgroundColor: '#007AFF',

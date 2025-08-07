@@ -17,10 +17,16 @@ import TeachingIcon from './source/icon_teaching.svg';
 import VieIcon from './source/icon_vie.svg';
 import StudentsIcon from './source/students.svg';
 import DigitizedDocumentIcon from './source/pinpaper-filled.svg' ;
-import CalendarIcon from './source/calendar.svg'
+import CalendarIcon from './source/calendar.svg';
+import EyeSecure from './source/eye-secure.svg';
+import EyeSlash from './source/eye-slash.svg';
+import LockIcon from './source/Lock.svg'
 export const SvgComponent = {
   ChartReportIcon,
   CalendarIcon,
+  LockIcon,
+  EyeSecure,
+  EyeSlash,
   HomeIcon,
   TrendingUpIcon,
   UserIcon,

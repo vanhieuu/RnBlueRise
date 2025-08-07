@@ -60,7 +60,7 @@ const RenderItemInner = (
     [item.visible],
   );
   return (
-    <ScaleDecorator activeScale={1}>
+    <ScaleDecorator activeScale={1.2} >
       <View
         ref={ref}
         style={[

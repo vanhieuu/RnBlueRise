@@ -3,12 +3,10 @@ import React, {useState, useMemo} from 'react';
 import {
   View,
   ScrollView,
-  TouchableOpacity,
   StyleSheet,
-  Text as RNText,
   Dimensions,
 } from 'react-native';
-import Svg, {G, Rect, Text} from 'react-native-svg';
+import Svg, {G, Rect, Text as SvgText} from 'react-native-svg';
 import {scaleBand, scaleLinear} from 'd3-scale';
 import isEqual from 'react-fast-compare';
 import {ChartCard} from '../ChartCard';
@@ -38,27 +36,34 @@ const ClassStatusChartComponent: React.FC<ClassStatusChartProps> = ({
   );
   const toggle = (k: string) => setVisible(v => ({...v, [k]: !v[k]}));
 
-  // Filter
+  // Filtered series
   const filtered = useMemo(
     () => slices.filter(s => visible[s.key]),
     [slices, visible],
   );
   if (filtered.length === 0) filtered.push(slices[0]);
 
-  // Dimensions
+  // Dimensions & margins
   const svgWidth = Dimensions.get('window').width - 32;
-  const svgHeight = 200;
-  const margin = {top: 20, right: 10, bottom: 30, left: 40};
+  const svgHeight = 240;            // a bit taller to accommodate values + labels
+  const margin = {
+    top: 20,
+    right: 10,
+    bottom: 50,                    // increased bottom margin
+    left: 40,
+  };
   const chartWidth = svgWidth - margin.left - margin.right;
   const chartHeight = svgHeight - margin.top - margin.bottom;
 
-  // X0: branch groups
+  // Scales
   const x0 = useMemo(
     () =>
-      scaleBand<string>().domain(branches).range([0, chartWidth]).padding(0.2),
+      scaleBand<string>()
+        .domain(branches)
+        .range([0, chartWidth])
+        .padding(0.2),
     [branches, chartWidth],
   );
-  // X1: within‐group series
   const x1 = useMemo(
     () =>
       scaleBand<string>()
@@ -67,7 +72,6 @@ const ClassStatusChartComponent: React.FC<ClassStatusChartProps> = ({
         .padding(0.1),
     [filtered, x0],
   );
-  // Y: linear from 0 up to the max stacked total
   const maxTotal = Math.max(
     ...branches.map((_, i) =>
       filtered.reduce((sum, s) => sum + s.values[i], 0),
@@ -87,7 +91,8 @@ const ClassStatusChartComponent: React.FC<ClassStatusChartProps> = ({
         color: s.color,
         visible: visible[s.key],
         onToggle: () => toggle(s.key),
-      }))}>
+      }))}
+    >
       <Block>
         <Svg width={svgWidth} height={svgHeight}>
           <G x={margin.left} y={margin.top}>
@@ -100,29 +105,41 @@ const ClassStatusChartComponent: React.FC<ClassStatusChartProps> = ({
                 const barW = x1.bandwidth();
                 const barH = chartHeight - barY;
                 return (
-                  <Rect
-                    key={`${series.key}-${branch}`}
-                    x={barX}
-                    y={barY}
-                    width={barW}
-                    height={barH}
-                    fill={series.color}
-                  />
+                  <G key={`${series.key}-${branch}`}>
+                    <Rect
+                      x={barX}
+                      y={barY}
+                      width={barW}
+                      height={barH}
+                      fill={series.color}
+                    />
+                    {/* Value label */}
+                    <SvgText
+                      x={barX + barW / 2}
+                      y={barY - 4}
+                      fontSize="10"
+                      fill={series.color}
+                      textAnchor="middle"
+                    >
+                      {value}
+                    </SvgText>
+                  </G>
                 );
               }),
             )}
 
-            {/* X‐Axis labels */}
+            {/* X‐Axis labels (moved down by the larger bottom margin) */}
             {branches.map((branch, i) => (
-              <Text
+              <SvgText
                 key={`x-${branch}`}
                 x={x0(branch)! + x0.bandwidth() / 2}
-                y={chartHeight + 15}
+                y={chartHeight + 20}      // moved lower
                 fontSize={10}
                 fill="#333"
-                textAnchor="middle">
+                textAnchor="middle"
+              >
                 {branch}
-              </Text>
+              </SvgText>
             ))}
 
             {/* Y‐Axis ticks & grid */}
@@ -139,14 +156,15 @@ const ClassStatusChartComponent: React.FC<ClassStatusChartProps> = ({
                     fill="#e6e6e6"
                   />
                   {/* tick label */}
-                  <Text
+                  <SvgText
                     x={-6}
                     y={yPos + 4}
                     fontSize={10}
                     fill="#333"
-                    textAnchor="end">
+                    textAnchor="end"
+                  >
                     {tickValue}
-                  </Text>
+                  </SvgText>
                 </G>
               );
             })}
@@ -157,6 +175,9 @@ const ClassStatusChartComponent: React.FC<ClassStatusChartProps> = ({
   );
 };
 
-export const ClassStatusChart = React.memo(ClassStatusChartComponent, isEqual);
+export const ClassStatusChart = React.memo(
+  ClassStatusChartComponent,
+  isEqual,
+);
 
 const styles = StyleSheet.create({});

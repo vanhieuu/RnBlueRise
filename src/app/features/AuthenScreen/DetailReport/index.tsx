@@ -14,6 +14,7 @@ import {
   StatusSlice,
   ClassStatusChart,
   TeacherHoursChart,
+
 } from '@components';
 import {APP_SCREEN, RootStackParamList} from '@navigation/screen-type';
 import {RouteProp, useRoute} from '@react-navigation/native';
@@ -217,7 +218,7 @@ const DetailReportScreen = () => {
             showsVerticalScrollIndicator={false}
             style={{backgroundColor: theme.colors.white}}>
             <RenderOverviewDetail data={StatusData} />
-            <Block paddingHorizontal={16} paddingTop={15}>
+            <Block paddingHorizontal={16} paddingTop={15} block marginVertical={30}>
               <Text fontSize={14} fontWeight="bold" colorTheme="text">
                 Thống kê tháng này
               </Text>

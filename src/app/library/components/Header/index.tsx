@@ -15,37 +15,47 @@ const HeaderComponent = ({
   nameOfEducationCenter,
   userName,
   setShow,
-  backgroundColor
+  backgroundColor,
+  showImageBackground = true,
 }: HeaderComponentType) => {
   const theme = useTheme();
   const styles = rootStyles(theme);
   return (
-    <Block direction="row" paddingVertical={10} color={backgroundColor ?? theme.colors.transparent}>
-      <TouchableOpacity
-        style={styles.buttonImage}
-        onPress={() => setShow(true)}>
-        <Block style={styles.containImage}>
-          {imageUrl.trim().length > 0 ? (
-            <FastImage source={{uri: imageUrl || ''}} style={styles.images} />
-          ) : (
-            <SvgIcon source="UserIcon" size={40} style={styles.images} />
-          )}
-        </Block>
-        <Block style={styles.containCamera}>
-          <SvgIcon source="CameraIcon" size={20} />
-        </Block>
-      </TouchableOpacity>
-      <Block justifyContent="center" paddingLeft={12}>
-        <Block>
-          <Text fontSize={16} color="white" fontWeight="700" fontFamily="bold">
-            {userName}
+    <ImageBackground source={showImageBackground ? images.bgFull : undefined}>
+      <Block
+        direction="row"
+        paddingVertical={10}
+        color={backgroundColor ?? theme.colors.transparent}>
+        <TouchableOpacity
+          style={styles.buttonImage}
+          onPress={() => setShow(true)}>
+          <Block style={styles.containImage}>
+            {imageUrl.trim().length > 0 ? (
+              <FastImage source={{uri: imageUrl || ''}} style={styles.images} />
+            ) : (
+              <SvgIcon source="UserIcon" size={40} style={styles.images} />
+            )}
+          </Block>
+          <Block style={styles.containCamera}>
+            <SvgIcon source="CameraIcon" size={20} />
+          </Block>
+        </TouchableOpacity>
+        <Block justifyContent="center" paddingLeft={12}>
+          <Block>
+            <Text
+              fontSize={16}
+              color="white"
+              fontWeight="700"
+              fontFamily="bold">
+              {userName}
+            </Text>
+          </Block>
+          <Text fontSize={12} color={theme.colors.grayscale02} fontWeight="700">
+            {nameOfEducationCenter}
           </Text>
         </Block>
-        <Text fontSize={12} color={theme.colors.grayscale02} fontWeight="700">
-          {nameOfEducationCenter}
-        </Text>
       </Block>
-    </Block>
+    </ImageBackground>
   );
 };
 

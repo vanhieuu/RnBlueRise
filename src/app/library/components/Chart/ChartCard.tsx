@@ -4,7 +4,7 @@ import {Text} from '@library/components/Text';
 import {createThemedStyles} from '@utils';
 import React from 'react';
 import isEqual from 'react-fast-compare';
-import {} from 'react-native';
+import {StyleProp, ViewStyle} from 'react-native';
 
 type ChartCardProps = {
   title: string;
@@ -17,6 +17,7 @@ type ChartCardProps = {
   }[];
   children: React.ReactNode;
   isCheckBox?: boolean;
+  containContentStyle?: StyleProp<ViewStyle>;
 };
 
 const ChartCardComponent: React.FC<ChartCardProps> = ({
@@ -24,8 +25,9 @@ const ChartCardComponent: React.FC<ChartCardProps> = ({
   legendItems,
   children,
   isCheckBox = true,
+  containContentStyle,
 }) => (
-  <Block style={styles.card}>
+  <Block style={[styles.card, containContentStyle]}>
     <Text style={styles.title}>{title}</Text>
     <Block style={styles.chartContainer}>{children}</Block>
     <Block style={styles.legend}>
@@ -42,15 +44,37 @@ const ChartCardComponent: React.FC<ChartCardProps> = ({
               {item.visible ? '☑' : '☐'}
             </Text>
           ) : (
-            <Block  marginRight={10} color={item.color} width={10} height={10} />
+            <Block
+              marginRight={10}
+              color={item.visible ? item.color : 'gray'}
+              width={10}
+              height={10}
+            />
           )}
           <Text
-            style={[styles.legendLabel, {color: isCheckBox  ? item.color : 'black'}]}
+            style={[
+              styles.legendLabel,
+              {
+                color: isCheckBox
+                  ? item.color
+                  : item.visible
+                  ? 'black'
+                  : 'gray',
+              },
+            ]}
             onPress={item.onToggle}>
             {item.label}
           </Text>
         </Block>
       ))}
+    </Block>
+    <Block direction="row" alignItems="center">
+      <Text fontSize={10} colorTheme="red01">
+        *
+      </Text>
+      <Text fontSize={12} colorTheme="grayIconHome">
+        Bấm vào từng ô để ẩn/hiện thông số
+      </Text>
     </Block>
   </Block>
 );
@@ -62,7 +86,8 @@ const styles = createThemedStyles({
     borderRadius: 8,
     marginVertical: 16,
     padding: 10,
-    marginHorizontal:8
+    marginHorizontal: 8,
+
     // elevation: 2,
   },
   title: {
@@ -78,7 +103,7 @@ const styles = createThemedStyles({
   legend: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 12,
+    marginTop: 20,
   },
   legendItem: {
     flexDirection: 'row',
