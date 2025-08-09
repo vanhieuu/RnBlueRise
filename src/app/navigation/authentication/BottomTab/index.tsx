@@ -40,7 +40,6 @@ export default BottomTab;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    // borderRadius:100
-    // backgroundColor:Color.backgroundColor
+
   } as ViewStyle,
 });

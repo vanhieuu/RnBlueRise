@@ -1,12 +1,13 @@
 export const ColorDefault = {
-  primary: '#053cc8',
+  primary: '#6fa8dc',
   primaryLight: '#0430A0',
+  secondBlue: '#053dc7',
   background: 'rgb(242, 242, 242)',
   neutralBackground: '#F1F9FC',
   neutral05: '#1E1E2A',
   neutral03: '#CBCBCB',
   card: 'rgb(255, 255, 255)',
-  body: 'rgb(255, 255, 255)',
+  body: '#f7f7f7f7',
   text: 'rgb(28, 28, 30)',
   border: 'rgb(216, 216, 216)',
   notification: 'rgb(255, 59, 48)',
@@ -48,7 +49,7 @@ export const ColorDefault = {
     x: '#FFF3D9',
     y: '#FEF9F0',
   },
-
+  bodyCard: '#eeeeee',
   blue_light_thin: '#E5F3FF',
   dividerNewUi: '#B4E4F9',
   grey00: '#EDEDED',
@@ -200,11 +201,11 @@ export const ColorDefault = {
   },
 };
 export const ColorDark = {
-  primary: '#053cc8',
+  primary: '#6fa8dc',
   primaryLight: '#0430A0',
   background: 'rgb(242, 242, 242)',
   neutralBackground: '#F1F9FC',
-  body: 'rgb(255, 255, 255)',
+  body: '#f7f7f7f7',
   neutral05: '#1E1E2A',
   neutral03: '#CBCBCB',
   card: 'rgb(255, 255, 255)',
@@ -396,4 +397,6 @@ export const ColorDark = {
     x: '#71C6FA',
     y: '#169FF3',
   },
+  secondBlue: '#053dc7',
+  bodyCard: '#eeeeee',
 };

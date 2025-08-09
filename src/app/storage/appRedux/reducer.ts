@@ -9,6 +9,10 @@ const initialState: AppState = {
   showDialog: false,
   showLoadingScreen: false,
   internetState: true,
+  listStatus: [],
+  token: '',
+  isLogin: false,
+  rememberLogin:false
 };
 const appSlice = createSlice({
   name: SLICE_NAME.APP,
@@ -32,6 +36,38 @@ const appSlice = createSlice({
     onEndProcess: state => {
       state.showDialog = false;
     },
+    onSetListData: (state, action: PayloadAction<any>) => {
+      state.listStatus = action.payload;
+    },
+    hideItem: (state, action: PayloadAction<string>) => {
+      const item = state.listStatus.find?.(
+        (item: any) => item.id === action.payload,
+      );
+      if (item) {
+        item.visible = !item.visible;
+      }
+    },
+    showItem: (state, action: PayloadAction<string>) => {
+      const item = state.listStatus.find?.(
+        (item: any) => item.id === action.payload,
+      );
+      if (item) {
+        item.visible = true;
+      }
+    },
+    onSetTokenLogin: (state, action: PayloadAction<string>) => {
+      state.token = action.payload;
+    },
+    onLogout: state => {
+      state.token = '';
+      state.isLogin = false;
+    },
+    onSetLoginStatus: (state, action: PayloadAction<boolean>) => {
+      state.isLogin = action.payload;
+    },
+    onSetRememberLogin:(state,action:PayloadAction<boolean>) =>{
+      state.rememberLogin = action.payload
+    }
   },
 });
 
