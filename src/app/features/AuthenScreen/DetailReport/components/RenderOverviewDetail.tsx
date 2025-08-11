@@ -39,7 +39,7 @@ const RenderOverviewDetail = ({data}: Props) => {
         height={130}
         data={data}
         onProgressChange={progress}
-        renderItem={({item}) => <CardStatusItem {...item} />}
+        renderItem={({item}:{item:any}) => <CardStatusItem {...item} />}
       />
       <Pagination.Basic
         progress={progress}
