@@ -12,7 +12,7 @@ const persistedReducer = persistReducer(
   {
     key: 'root',
     storage: reduxPersistStorage,
-    whitelist: [],
+    whitelist: ['auth','app'],
     timeout: 0,
   },
   allReducer,

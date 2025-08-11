@@ -31,7 +31,6 @@ import {createThemedStyles, StatusData} from '@utils';
 import {useMix, useRadian, useSharedTransition} from '@animated';
 import Animated, {useAnimatedStyle} from 'react-native-reanimated';
 import {BottomSheetMethods} from '@gorhom/bottom-sheet/lib/typescript/types';
-import {BottomSheetView} from '@gorhom/bottom-sheet';
 import SearchComponent from './components/SearchComponent';
 import RenderListItem from './components/RenderListItem';
 import {images} from '@assets/image';

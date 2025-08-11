@@ -4,11 +4,12 @@ import {FormLogin} from './components/form-login';
 import {BaseScreenLayout, Block, Text} from '@components';
 import {FormLoginType} from './components/type';
 import ReactNativeBiometrics, {BiometryType} from 'react-native-biometrics';
-import {AppModule, dispatch, useSelector} from '@common';
+import {AppModule, dispatch, getState, useSelector} from '@common';
 import {images} from '@assets/image';
 
 import {appActions} from '@store/appRedux/reducer';
 import {shallowEqual} from 'react-redux';
+import {authActions} from '@store/authRedux/reducer';
 type Props = {};
 const STORAGE_KEY = 'jwtToken';
 const LoginScreen = (props: Props) => {
@@ -36,7 +37,7 @@ const LoginScreen = (props: Props) => {
   };
 
   const getSavedToken = async () => {
-    const token: any = await AppModule.MMKVStorage.getString(STORAGE_KEY);
+    const {token} = getState('app')
 
     if (token && rememberLogin) {
       setJwtToken(token);
@@ -85,7 +86,7 @@ const LoginScreen = (props: Props) => {
         const {success, signature} = resultObject;
         if (success) {
           setStatus('Đã ký xác thực, đang gửi lên server...');
-          console.log(signature, 'signature');
+
           dispatch(appActions.onSetTokenLogin(signature!));
           dispatch(appActions.onSetLoginStatus(true));
           // === GIẢ LẬP: Gửi signature, publicKey, payload lên server để xác thực
@@ -112,8 +113,7 @@ const LoginScreen = (props: Props) => {
     setStatus('Đã đăng xuất.');
   };
   const onSubmit = useCallback((data: FormLoginType) => {
-    dispatch(appActions.onSetLoginStatus(true));
-    console.log(data);
+    dispatch(authActions.onLoginAction(data.name, data.password));
   }, []);
 
   return (
