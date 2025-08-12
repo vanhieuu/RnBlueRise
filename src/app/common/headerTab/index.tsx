@@ -31,41 +31,13 @@ const Header = ({
       // marginVertical={10}
       paddingVertical={10}
       marginBottom={10}
-      colorTheme='background'
+      colorTheme="background"
       height={40}>
-        <Block block>
-        <SvgIcon
-        // onPress={onPressListCheck}sa
-        source="IconLogoApp"
-        size={160}
-        color={theme.colors.background}
-      />
-        </Block>
-     
-      <Block direction="row" alignItems="center" marginRight={10}>
-        {showFont && (
-          <SvgIcon
-            source="Font"
-            color={theme.colors.body}
-            size={25}
-            onPress={onPressFont}
-          />
-        )}
-        <Block width={10} />
-
-        <SvgIcon
-          onPress={() => navigation.navigate(APP_SCREEN.SEARCH,{
-            keyword:''
-          })}
-          color={theme.colors.body}
-          source="Search"
-          size={25}
-        />
-      </Block>
+      <Block direction="row" alignItems="center" marginRight={10}></Block>
     </Block>
   );
 };
 
-export const HeaderTab = React.memo(Header,isEqual);
+export const HeaderTab = React.memo(Header, isEqual);
 
 const styles = StyleSheet.create({});

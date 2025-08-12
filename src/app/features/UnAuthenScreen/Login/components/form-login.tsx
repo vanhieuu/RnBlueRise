@@ -29,19 +29,14 @@ const FormLoginComponent = ({onSubmit, onPressBio}: FormLoginProps) => {
     state => state.app.rememberLogin,
     shallowEqual,
   );
-  const phoneRegex = RegExp(
-    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-  );
 
   const validate = useMemo<yup.ObjectSchema<FormLoginType>>(
     () =>
       yup
         .object()
         .shape({
-          name: yup
-            .string()
-            .required('SĐT không được để trống')
-            .matches(phoneRegex, 'SĐT không hợp lệ'),
+          name: yup.string().required('Tài khoản không được để trống'),
+
           password: yup
             .string()
             .required('Mật khẩu không được để trống')
@@ -81,7 +76,7 @@ const FormLoginComponent = ({onSubmit, onPressBio}: FormLoginProps) => {
           secureTextEntry={false}
           leftChild={true}
           leftIcon="UserIcon"
-          inputMode="numeric"
+ 
           title=""
           // defaultValue="vanhieudev@gmail.com"
         />
@@ -98,16 +93,7 @@ const FormLoginComponent = ({onSubmit, onPressBio}: FormLoginProps) => {
         />
       </FormProvider>
       <Block direction="row" justifyContent="flex-end">
-        {/* <TouchableOpacity
-          onPress={() => navigate(APP_SCREEN.FORGOT_PASSWORD_NAV)}>
-          <Text
-            colorTheme="newUiPrimary"
-            fontSize={16}
-            fontWeight="bold"
-            fontFamily="primary">
-            Quên mật khẩu
-          </Text>
-        </TouchableOpacity> */}
+      
       </Block>
       <Block direction="row" alignItems="center" justifyContent="space-between">
         <TouchableOpacity
