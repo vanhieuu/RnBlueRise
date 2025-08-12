@@ -10,6 +10,7 @@ import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 
 import {Block, SvgIcon, Text} from '@components';
 import {AppTheme, useTheme} from '@theme';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 type Props = {};
 
@@ -22,7 +23,7 @@ const BottomBar = (props: BottomTabBarProps) => {
   const pressNavigator = React.useCallback(
     (curTab: any) => {
       startEffect(() => {
-        if (curTab === 0 || curTab === 1 || curTab === 2 || curTab === 3) {
+        if (curTab === 0 || curTab === 1 || curTab === 2) {
           navigation.emit({
             type: 'tabPress',
             target: state.routes[curTab].name,
@@ -37,14 +38,13 @@ const BottomBar = (props: BottomTabBarProps) => {
   );
 
   return (
-    // <SafeAreaView edges={['right', 'left']} style={{overflow:'hidden',backgroundColor:'blue'}}>
     <Block style={styles.container} colorTheme="background" shadow={true}>
       <TouchableOpacity style={styles.item} onPress={() => pressNavigator(0)}>
         <Block pointerEvents="none">
           <SvgIcon
             source="HomeIcon"
             size={24}
-            color={state.index === 0 ? '#2069B2' : theme.colors.body}
+            color={state.index === 0 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
         <Text style={styles.txtItem(state.index, 0)}>Trang chủ</Text>
@@ -54,7 +54,7 @@ const BottomBar = (props: BottomTabBarProps) => {
           <SvgIcon
             source="TrendingUpIcon"
             size={24}
-            color={state.index === 1 ? '#2069B2' : theme.colors.body}
+            color={state.index === 1 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
         <Text style={styles.txtItem(state.index, 1)}>Chỉ số</Text>
@@ -65,24 +65,23 @@ const BottomBar = (props: BottomTabBarProps) => {
           <SvgIcon
             source="ChartReportIcon"
             size={24}
-            color={state.index === 2 ? '#2069B2' : theme.colors.body}
+            color={state.index === 2 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
-        <Text style={styles.txtItem(state.index, 2)}>Báo cái</Text>
+        <Text style={styles.txtItem(state.index, 2)}>Báo cá0</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.item} onPress={() => pressNavigator(3)}>
+      {/* <TouchableOpacity style={styles.item} onPress={() => pressNavigator(3)}>
         <Block pointerEvents="none">
           <SvgIcon
             source="UserIcon"
             size={24}
-            color={state.index === 3 ? '#2069B2' : theme.colors.body}
+            color={state.index === 3 ? '#2069B2' : theme.colors.neutral03}
           />
         </Block>
         <Text style={styles.txtItem(state.index, 3)}>Tài khoản</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </Block>
-    // </SafeAreaView>
   );
 };
 

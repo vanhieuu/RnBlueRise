@@ -5,6 +5,8 @@ import BottomTab from './BottomTab';
 import {APP_SCREEN, AuthenParamList} from '@navigation/screen-type';
 
 
+import TaskBoard from '@features/AuthenScreen/TaskBoard';
+
 const Stack = createNativeStackNavigator<AuthenParamList>();
 
 const Authentication = () => {
@@ -19,7 +21,11 @@ const Authentication = () => {
         component={BottomTab}
         options={{orientation: 'portrait'}}
       />
-     
+      <Stack.Screen
+        name={APP_SCREEN.TASK_BOARD}
+        component={TaskBoard}
+        options={{orientation: 'portrait'}}
+      />
     </Stack.Navigator>
   );
 };

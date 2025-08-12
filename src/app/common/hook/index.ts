@@ -1,18 +1,14 @@
 import isEqual from 'react-fast-compare';
 import {RootState} from 'src/app/storage/allReducer';
-import {useSelector as useReduxSelector} from 'react-redux';
+import {TypedUseSelectorHook, useSelector as useReduxSelector} from 'react-redux';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {BackHandler, Dimensions} from 'react-native';
 import {onCheckType} from '../type';
-import { checkApplicationPermission,requestUserPermission } from './useRequestPermission';
+import { checkApplicationPermission } from './useRequestPermission';
 
-function useSelector<T>(
-  selector: (state: RootState) => T,
-  equalityFn = isEqual,
-): T {
-  return useReduxSelector<RootState, T>(selector, equalityFn);
-}
-
+ const useAppSelector: TypedUseSelectorHook<RootState> = (selector, equalityFn = isEqual) => {
+  return useReduxSelector<RootState, ReturnType<typeof selector>>(selector, equalityFn);
+};
 function useDisableBackHandler(disabled: boolean, callback?: () => void) {
   // function
   const onBackPress = useCallback(() => {
@@ -120,7 +116,7 @@ function useDeepCompareEffect(
   useEffect(callback, [currentDependenciesRef.current]);
 }
 export {
-  useSelector,
+  useAppSelector as useSelector,
   useDeepCompareEffect,
   useEffectOnce,
   useDisableBackHandler,
@@ -131,6 +127,6 @@ export {
   decodeHtml,
   useDebounce,
   checkApplicationPermission,
-  requestUserPermission,
+
   
 };

@@ -210,7 +210,7 @@ export const InputOutline = forwardRef<TextInput, InputOutlineProps>((props, ref
               text={placeHolder}
               color={placeholderColor}
               fontSize={16}
-              style={{top:6}}
+              style={{top:2,left:30}}
             />
           </View>
         )}

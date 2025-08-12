@@ -3,14 +3,16 @@ import React from 'react';
 
 import {
   TouchableOpacity,
-  Text,
+
   StyleSheet,
-  View,
+
   ActivityIndicator,
   StyleProp,
   ViewStyle,
   TextStyle,
 } from 'react-native';
+import { Block } from '../Block';
+import { Text } from '../Text';
 
 type ButtonProps = {
   onPress?: () => void;
@@ -23,6 +25,7 @@ type ButtonProps = {
   disabled?: boolean;
   activeOpacity?: number;
   loading?: boolean;
+  textColor:string
 };
 
 const Button = ({
@@ -36,11 +39,12 @@ const Button = ({
   disabled = false,
   activeOpacity = 0.5,
   loading = false,
+  textColor
 }: ButtonProps) => {
   const theme = useTheme();
   const styles = buttonStyles(theme);
   return (
-    <View style={{padding: 2}}>
+    <Block style={{padding: 2}}>
       <TouchableOpacity
         onPress={onPress}
         onLongPress={onLongPress}
@@ -56,11 +60,11 @@ const Button = ({
         {loading ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text style={[styles.buttonText, textStyle]}>{title}</Text>
+          <Text style={[styles.buttonText,textStyle]} color={textColor}  >{title}</Text>
         )}
         {iconRight}
       </TouchableOpacity>
-    </View>
+    </Block>
   );
 };
 

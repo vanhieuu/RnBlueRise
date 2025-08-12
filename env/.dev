@@ -1,6 +1,9 @@
-APP_ENV=Dev
-APP_DISPLAY_NAME=RnBlueRise-Dev
-APP_PLACEHOLDER_NAME = RnBlueRise
-VERSION_CODE = 1
-VERSION_NAME = 2025073100
+APP_ENV=DEV
+APP_DISPLAY_NAME=RnBlueRise-Prod
+APP_PLACEHOLDER_NAME =RnBlueRise
+VERSION_CODE =2
+VERSION_NAME =2025080800
 BUNDLE_IDENTIFIER = com.rnbluerise
+API_URL=https://erp-api.bsedtech.com
+HOST_MOBILE_AUTH_API=https://mobile-auth.bsedtech.com/
+HOST_AUTH = https://auth.bsedtech.com/
