@@ -15,7 +15,7 @@ const authSlice = createSlice({
       return {...initialState};
     },
     onSetToken: (state, action: PayloadAction<any>) => {
-      return (state.token = action.payload);
+      state.token = action.payload;
     },
     onSetAppProfile: (state, action: PayloadAction<any>) => {
       return (state.profile = action.payload);

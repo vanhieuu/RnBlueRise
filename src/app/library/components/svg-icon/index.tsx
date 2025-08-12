@@ -6,7 +6,7 @@ import isEqual from 'react-fast-compare';
 
 import {SvgIconProps} from './type';
 import { TouchableOpacity } from 'react-native';
-import { Block } from '@components';
+import { Block } from '../Block';
 
 const SvgIconComponent = ({
   source,
@@ -17,7 +17,7 @@ const SvgIconComponent = ({
   style,
 }: SvgIconProps) => {
   // state
-  const theme = useTheme();
+  // const theme = useTheme();
   // render
   return onPress ? (
     <TouchableOpacity

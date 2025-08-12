@@ -45,17 +45,17 @@ const getColor = (
   }
 };
 
-const getIcon = (type: TypeMessage) => {
-  switch (type) {
-    case 'success':
-      return <SvgIcon source="SuccessIcon" size={20} />;
-    case 'error':
-      return <SvgIcon source="ErrorIcon" size={20} />;
+// const getIcon = (type: TypeMessage) => {
+//   switch (type) {
+//     case 'success':
+//       return <SvgIcon source="SuccessIcon" size={20} />;
+//     case 'error':
+//       return <SvgIcon source="ErrorIcon" size={20} />;
 
-    default:
-      return <SvgIcon source="SuccessIcon" size={20} />;
-  }
-};
+//     default:
+//       return <SvgIcon source="SuccessIcon" size={20} />;
+//   }
+// };
 
 export const SnackItem = memo(
   ({
@@ -109,7 +109,7 @@ export const SnackItem = memo(
     }, [isShow]);
 
     useEffect(() => {
-      let id: NodeJS.Timeout | null = null;
+      let id: any | null = null;
       if (!isShow) {
         id = setTimeout(() => {
           onPop(item);
@@ -135,7 +135,7 @@ export const SnackItem = memo(
     return (
       <Animated.View
         style={[styles.itemBar as ViewStyle, itemBarAnimatedStyle]}>
-        {getIcon(item.type)}
+        {/* {getIcon(item.type)} */}
         <Block width={10} />
         <Text
           style={[

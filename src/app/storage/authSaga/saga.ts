@@ -14,10 +14,15 @@ export function* onLoginSaga(action: PayloadAction) {
         AuthApi.login,
         action.payload,
       );
-
-      yield put(authActions.onSetToken(res.accessToken));
-      yield put(appActions.onSetTokenLogin(res.accessToken));
+      if(Object.keys(res).length > 0){
+    yield* put(authActions.onSetToken(res.accessToken));
+      yield* put(appActions.onSetTokenLogin(res.accessToken));
+      yield* put(appActions.onSetLoginStatus(true))
+      console.log('run here')
+      }
+    
     } catch (err) {
+      console.log(err,'show err')
       showSnack({
         msg: 'Có lỗi xảy ra, vui lòng thử lại',
         type: 'error',

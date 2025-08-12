@@ -10,13 +10,15 @@ import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import Authentication from './authentication';
 import DetailReportScreen from '@features/AuthenScreen/DetailReport';
 import UnAuthenTicationStack from './unAuthentication';
-import {useSelector} from '@common';
+import {dispatch, useSelector} from '@common';
 import {shallowEqual} from 'react-redux';
+import { appActions } from '@store/appRedux/reducer';
 
 type Props = {};
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const RootNavigator = (props: Props) => {
   const [networkState, setNetworkState] = React.useState<boolean>(true);
+  const token = useSelector(state => state.auth.token,shallowEqual)
   const isLogin = useSelector(state => state.app.isLogin, shallowEqual);
   useEffect(() => {
     // Subscribe
@@ -27,14 +29,17 @@ const RootNavigator = (props: Props) => {
         setNetworkState(false);
       }
     });
+    if(token){
+      dispatch(appActions.onSetLoginStatus(true))
+    }
 
     // Unsubscribe
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [token]);
 
-  // console.log(token,'ssss')
+  console.log(token ,'ssss')
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!isLogin ? (
