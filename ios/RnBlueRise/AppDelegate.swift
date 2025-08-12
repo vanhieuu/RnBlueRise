@@ -44,7 +44,7 @@ class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
           #if DEBUG
               RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
           #else
-              OtaHotUpdate.getBundle()  // -> Add this line
+              OtaHotUpdate.getBundle()
           #endif
   }
 }
